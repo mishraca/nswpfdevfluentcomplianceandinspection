@@ -17,8 +17,8 @@
         throw 'Select active officers, a Manager and a department.';
     }
     var managerPosition = new CporPositionAuthority().positionFor(manager);
-    if (!managerPosition) {
-        throw 'The selected Manager has no valid SAP HDA Position or SAP Position.';
+    if (!managerPosition || !new CporPositionAuthority().holds(managerPosition, manager)) {
+        throw 'The selected Manager must be the current holder of one valid SAP HDA Position or SAP Position.';
     }
     var service = new GlideRecord('x_au_nswp_pcm_service');
     service.addQuery('code', 'cpor_16d');

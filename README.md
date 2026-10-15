@@ -27,14 +27,22 @@ are defined for the shared workspace. Each action rechecks the current actor,
 case lifecycle and configured stage on the server. Manager support also checks
 the nominee's effective rank (`u_hda_rank` first, then `title`) against an
 application-owned rank record selected for the approval stage, and resolves
-their SAP HDA Position before SAP Position. A Superintendent rank record is
-supplied; an administrator must bind it to the approval stage and activate the
-rule after checking the police rank values.
+their SAP HDA Position before SAP Position. The Superintendent rank rule is
+bound to the Core final approval stage but remains inactive until the two apps
+and the police rank values have been checked together.
+
+Position authority fails closed if HR Profiles identify more than one active
+holder for the same effective SAP position. A bounded assignment refresh is
+defined to inspect 100 outstanding activities per run and continue from a
+private application cursor. It is inactive pending native checks of HR reads,
+vacancies, overlaps and activity updates. Access checks use live position
+authority even while the displayed assignment has not yet refreshed.
 
 This branch is **not ready for operational use**. The Core CPOR service and
-stages remain inactive; live position handover refresh and native police-instance
-verification are still pending. The workspace actions compile locally but have
-not been opened in the police instance.
+stages remain inactive; same-case amendment and resubmission are not yet
+implemented in this police-owned branch. Native police-instance verification
+and activation of position assignment refresh are pending. The workspace
+actions compile locally but have not been opened in the police instance.
 Employee Center page, catalog and ticket configuration will be completed on
 the police instance. Cross-scope access and the end-to-end journey require
 native review. A local build only validates SDK

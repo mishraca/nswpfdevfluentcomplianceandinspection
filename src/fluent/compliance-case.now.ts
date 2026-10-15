@@ -110,7 +110,7 @@ if (!stage.next() || stage.getValue('purpose') != 'support') {
 }
 var managerId = current.getValue('manager');
 var positionId = current.getValue('manager_position_at_submission');
-if (!positionId || new CporPositionAuthority().positionFor(managerId) != positionId) {
+if (!positionId || !new CporPositionAuthority().holds(positionId, managerId)) {
     throw 'Manager position authority changed before the review activity was created.';
 }
 var existing = new GlideRecord('x_au_nswp_cicsm_activity');

@@ -14,9 +14,10 @@ CporReviewRuntime.prototype = {
         var activity = new GlideRecord('x_au_nswp_cicsm_activity');
         activity.addQuery('case', caseId);
         activity.addQuery('responsible_position', position);
+        activity.addQuery('activity_status', 'IN', 'ready,in_progress,waiting');
         activity.setLimit(1);
         activity.query();
-        return activity.next();
+        return activity.next() && new CporPositionAuthority().holds(position);
     },
 
     canReadActivity: function (activity) {
@@ -119,7 +120,9 @@ CporReviewRuntime.prototype = {
             throw 'The selected person does not hold the required effective rank.';
         }
         var nomineePosition = new CporPositionAuthority().positionFor(nomineeId);
-        if (!nomineePosition) throw 'Select a Superintendent with a valid SAP position.';
+        if (!nomineePosition || !new CporPositionAuthority().holds(nomineePosition, nomineeId)) {
+            throw 'Select a Superintendent who is the current holder of one SAP position.';
+        }
         var duplicate = new GlideRecord('x_au_nswp_cicsm_activity');
         duplicate.addQuery('case', caseId);
         duplicate.addQuery('stage', next.getUniqueValue());

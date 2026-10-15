@@ -146,6 +146,10 @@ declare global {
                         table: 'sys_script_include'
                         id: '4f6237e82c254957b9b892f3690a4cd6'
                     }
+                    'cpor-superintendent-authority': {
+                        table: 'x_au_nswp_cicsm_review_authority'
+                        id: '2e840eab6a5a45b8bb8955c1f6972520'
+                    }
                     'create-cpor-first-activity': {
                         table: 'sys_script'
                         id: 'a2392c9ff8f4413c8ee6879d8d1f1a55'
@@ -178,6 +182,10 @@ declare global {
                         table: 'sys_module'
                         id: '9b1e42c560994ba687fdb25334f01ef2'
                     }
+                    'position-assignment-refresh-cursor': {
+                        table: 'sys_properties'
+                        id: '57c755452d5a4fcfbc58b71cac2790f0'
+                    }
                     'rank-create': {
                         table: 'sys_security_acl'
                         id: 'e32f401a89324a4aa9ebc818569b1070'
@@ -193,6 +201,10 @@ declare global {
                     'rank-write': {
                         table: 'sys_security_acl'
                         id: '012552eaaee94b6393c8d4e1bd3aa960'
+                    }
+                    'refresh-outstanding-position-assignments': {
+                        table: 'sysauto_script'
+                        id: '1be985c9174246ce8e30384057155d24'
                     }
                     'review-authority-create': {
                         table: 'sys_security_acl'
@@ -225,6 +237,10 @@ declare global {
                     'src_server_cpor-review-runtime_server_js': {
                         table: 'sys_module'
                         id: '986363d69ede4dd192cf1238c7628054'
+                    }
+                    'src_server_position-assignment-refresh_server_js': {
+                        table: 'sys_module'
+                        id: '558a2d0c649d4b24a1cf080f79aa25f6'
                     }
                     'superintendent-rank': {
                         table: 'x_au_nswp_cicsm_rank'
