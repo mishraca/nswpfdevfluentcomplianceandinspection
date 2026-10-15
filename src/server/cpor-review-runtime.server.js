@@ -8,7 +8,7 @@ CporReviewRuntime.prototype = {
         var record = new GlideRecord('x_au_nswp_cicsm_cpor');
         if (!record.get(caseId)) return false;
         var service = record.service.getRefRecord();
-        if (!service.isValidRecord() || service.getValue('active') != '1') return false;
+        if (!service.isValidRecord()) return false;
         var position = new CporPositionAuthority().positionFor(gs.getUserID());
         if (!position) return false;
         var activity = new GlideRecord('x_au_nswp_cicsm_activity');
@@ -147,6 +147,150 @@ CporReviewRuntime.prototype = {
         context.record.setValue('lifecycle', 'awaiting_review');
         if (!context.record.update()) throw 'The case could not advance to final approval.';
         return { caseId: caseId, approvalActivityId: approvalId };
+    },
+
+    _approvalContext: function (caseId) {
+        if (!/^[0-9a-f]{32}$/.test(String(caseId || '')) ||
+            !gs.hasRole('x_au_nswp_pcm.case_worker')) return null;
+        var record = new GlideRecord('x_au_nswp_cicsm_cpor');
+        if (!record.get(caseId) || record.getValue('lifecycle') != 'awaiting_review' ||
+            record.getValue('approval_outcome')) return null;
+        var service = record.service.getRefRecord();
+        if (!service.isValidRecord() || service.getValue('active') != '1' ||
+            service.getValue('fulfilment_mode') != 'activities') return null;
+        var activity = new GlideRecord('x_au_nswp_cicsm_activity');
+        activity.addQuery('case', caseId);
+        activity.addQuery('activity_status', 'ready');
+        activity.setLimit(2);
+        activity.query();
+        if (!activity.next()) return null;
+        var stage = activity.stage.getRefRecord();
+        if (!stage.isValidRecord() || stage.getValue('process') != service.getValue('process') ||
+            stage.getValue('purpose') != 'approval' || stage.getValue('active') != '1' ||
+            !new CporPositionAuthority().holds(activity.getValue('responsible_position'))) return null;
+        var selected = activity.getUniqueValue();
+        if (activity.next()) return null;
+        activity.get(selected);
+        return { record: record, service: service, activity: activity, stage: stage };
+    },
+
+    canDecide: function (caseId) {
+        return !!this._approvalContext(caseId);
+    },
+
+    decisionContext: function (caseId) {
+        var context = this._approvalContext(caseId);
+        if (!context) throw 'Final approval is unavailable for this case.';
+        return { activity: context.activity.getUniqueValue() };
+    },
+
+    decide: function (caseId, activityId, outcome, comments) {
+        if (outcome != 'approve' && outcome != 'reject') throw 'Unsupported final decision.';
+        var context = this._approvalContext(caseId);
+        if (!context || !/^[0-9a-f]{32}$/.test(String(activityId || '')) ||
+            context.activity.getUniqueValue() != activityId) {
+            throw 'The final approval has changed. Reload the case before continuing.';
+        }
+        comments = String(comments || '').trim();
+        if (comments.length > 4000 || (outcome == 'reject' && !comments)) {
+            throw 'A rejection reason is required and comments must be within 4000 characters.';
+        }
+        if (outcome == 'approve') {
+            var next = new GlideRecord('x_au_nswp_pcm_stage');
+            next.addQuery('process', context.service.getValue('process'));
+            next.addQuery('active', true);
+            next.addQuery('sequence', '>', context.stage.getValue('sequence'));
+            next.orderBy('sequence');
+            next.setLimit(1);
+            next.query();
+            if (!next.next() || next.getValue('purpose') != 'finalisation') {
+                throw 'The configured next stage must be finalisation.';
+            }
+        }
+        context.activity.setValue('activity_status', 'complete');
+        context.activity.setValue('review_outcome', outcome);
+        context.activity.setValue('review_comments', comments);
+        if (!context.activity.update()) throw 'The final approval activity could not be completed.';
+        context.record.setValue('approval_outcome', outcome == 'approve' ? 'approved' : 'rejected');
+        context.record.setValue('lifecycle', outcome == 'approve' ? 'in_progress' : 'complete');
+        if (outcome == 'reject') {
+            context.record.setValue('active', false);
+            context.record.setValue('closed_at', new GlideDateTime().getValue());
+            context.record.setValue('closed_by', gs.getUserID());
+            context.record.setValue('close_notes', comments);
+        }
+        if (!context.record.update()) throw 'The final decision could not be recorded.';
+        return { caseId: caseId, outcome: outcome };
+    },
+
+    _finalisationContext: function (caseId) {
+        if (!/^[0-9a-f]{32}$/.test(String(caseId || ''))) return null;
+        var record = new GlideRecord('x_au_nswp_cicsm_cpor');
+        if (!record.get(caseId) || record.getValue('lifecycle') != 'in_progress' ||
+            record.getValue('approval_outcome') != 'approved' || record.getValue('active') != '1') return null;
+        if (!new x_au_nswp_pcm.OperationalCasePolicy().allows(record, 'case.finalise')) return null;
+        var service = record.service.getRefRecord();
+        if (!service.isValidRecord() || service.getValue('active') != '1' ||
+            service.getValue('fulfilment_mode') != 'activities') return null;
+        var stage = new GlideRecord('x_au_nswp_pcm_stage');
+        stage.addQuery('process', service.getValue('process'));
+        stage.addQuery('purpose', 'finalisation');
+        stage.addQuery('active', true);
+        stage.setLimit(2);
+        stage.query();
+        if (!stage.next()) return null;
+        if (stage.next()) return null;
+        return { record: record, stage: stage };
+    },
+
+    canFinalise: function (caseId) {
+        return !!this._finalisationContext(caseId);
+    },
+
+    validateOutcome: function (record) {
+        var conducted = String(record.getValue('inspection_conducted') || '');
+        var date = String(record.getValue('final_inspection_date') || '');
+        var charge = String(record.getValue('charge_laid') || '');
+        var chargeNumber = String(record.getValue('charge_number') || '').trim();
+        var reason = String(record.getValue('not_conducted_reason') || '').trim();
+        if (conducted != 'yes' && conducted != 'no') return 'Select whether the inspection was conducted.';
+        if (conducted == 'yes') {
+            var parts = /^(\d{4})-(\d{2})-(\d{2})$/.exec(date);
+            var parsed = parts ? new Date(Date.UTC(Number(parts[1]), Number(parts[2]) - 1, Number(parts[3]))) : null;
+            if (!parts || !parsed || parsed.getUTCFullYear() != Number(parts[1]) ||
+                parsed.getUTCMonth() != Number(parts[2]) - 1 || parsed.getUTCDate() != Number(parts[3]) ||
+                date >= new GlideDate().getValue()) return 'Enter a valid inspection date before today.';
+            if (charge != 'yes' && charge != 'no') return 'Select whether a charge was laid.';
+            if (reason) return 'A reason for an inspection not conducted does not apply.';
+        } else if (date || charge || chargeNumber) {
+            return 'Inspection and charge details require a conducted inspection.';
+        }
+        if (charge != 'yes' && chargeNumber) return 'A charge number requires a charge laid.';
+        if (chargeNumber.length > 80 || reason.length > 4000) return 'Inspection outcome details are too long.';
+        return '';
+    },
+
+    finalise: function (caseId, conducted, date, charge, chargeNumber, reason) {
+        var context = this._finalisationContext(caseId);
+        if (!context) throw 'Recording an inspection outcome is unavailable for this case.';
+        conducted = String(conducted || '');
+        date = String(date || '');
+        charge = String(charge || '');
+        chargeNumber = String(chargeNumber || '').trim();
+        reason = String(reason || '').trim();
+        context.record.setValue('inspection_conducted', conducted);
+        context.record.setValue('final_inspection_date', date);
+        context.record.setValue('charge_laid', charge);
+        context.record.setValue('charge_number', chargeNumber);
+        context.record.setValue('not_conducted_reason', reason);
+        var validationError = this.validateOutcome(context.record);
+        if (validationError) throw validationError;
+        context.record.setValue('lifecycle', 'complete');
+        context.record.setValue('active', false);
+        context.record.setValue('closed_at', new GlideDateTime().getValue());
+        context.record.setValue('closed_by', gs.getUserID());
+        if (!context.record.update()) throw 'The inspection outcome could not be recorded.';
+        return { caseId: caseId };
     },
 
     type: 'CporReviewRuntime'

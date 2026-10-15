@@ -22,9 +22,19 @@ An after-insert rule uses the service's configured first support stage to
 create a position-bound review activity. The position resolver checks live HR
 Profile values with HDA priority.
 
-This branch is **not ready for installation or operational use**. The Core
-service remains inactive; reviewer decision actions, live position handover
-refresh and a workspace queue have not been implemented here.
+The Manager support, Superintendent decision and inspection outcome actions
+are defined for the shared workspace. Each action rechecks the current actor,
+case lifecycle and configured stage on the server. Manager support also checks
+the nominee's effective rank (`u_hda_rank` first, then `title`) against an
+application-owned rank record selected for the approval stage, and resolves
+their SAP HDA Position before SAP Position. A Superintendent rank record is
+supplied; an administrator must bind it to the approval stage and activate the
+rule after checking the police rank values.
+
+This branch is **not ready for operational use**. The Core CPOR service and
+stages remain inactive; live position handover refresh and native police-instance
+verification are still pending. The workspace actions compile locally but have
+not been opened in the police instance.
 Employee Center page, catalog and ticket configuration will be completed on
 the police instance. Cross-scope access and the end-to-end journey require
 native review. A local build only validates SDK

@@ -22,5 +22,41 @@ CporReviewAjax.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
         }
     },
 
+    decisionContext: function () {
+        try {
+            return JSON.stringify(new CporReviewRuntime().decisionContext(this.getParameter('sysparm_case')));
+        } catch (error) {
+            return JSON.stringify({ error: String(error) });
+        }
+    },
+
+    decide: function () {
+        try {
+            var result = new CporReviewRuntime().decide(
+                this.getParameter('sysparm_case'),
+                this.getParameter('sysparm_activity'),
+                this.getParameter('sysparm_outcome'),
+                this.getParameter('sysparm_comments'));
+            return JSON.stringify({ ok: true, caseId: result.caseId });
+        } catch (error) {
+            return JSON.stringify({ error: String(error) });
+        }
+    },
+
+    finalise: function () {
+        try {
+            var result = new CporReviewRuntime().finalise(
+                this.getParameter('sysparm_case'),
+                this.getParameter('sysparm_conducted'),
+                this.getParameter('sysparm_date'),
+                this.getParameter('sysparm_charge'),
+                this.getParameter('sysparm_charge_number'),
+                this.getParameter('sysparm_reason'));
+            return JSON.stringify({ ok: true, caseId: result.caseId });
+        } catch (error) {
+            return JSON.stringify({ error: String(error) });
+        }
+    },
+
     type: 'CporReviewAjax'
 });

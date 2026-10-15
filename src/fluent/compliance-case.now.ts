@@ -40,6 +40,14 @@ export const x_au_nswp_cicsm_cpor = Table({
         manager_position_at_submission: ReferenceColumn({ label: 'Manager position at submission',
             referenceTable: 'sn_hr_core_sap_position', mandatory: true, cascadeRule: 'restrict' }),
         cpor_application_year: IntegerColumn({ label: 'CPOR application year', mandatory: true, min: 1000, max: 9999 }),
+        approval_outcome: ChoiceColumn({ label: 'Final decision', choices: {
+            approved: 'Approved', rejected: 'Rejected',
+        } }),
+        inspection_conducted: ChoiceColumn({ label: 'Inspection conducted', choices: { yes: 'Yes', no: 'No' } }),
+        final_inspection_date: DateColumn({ label: 'Final inspection date' }),
+        charge_laid: ChoiceColumn({ label: 'Charge laid', choices: { yes: 'Yes', no: 'No' } }),
+        charge_number: StringColumn({ label: 'Charge number', maxLength: 80 }),
+        not_conducted_reason: MultiLineTextColumn({ label: 'Reason inspection not conducted', maxLength: 4000 }),
     },
 })
 
@@ -122,6 +130,30 @@ review.setValue('short_description', stage.getValue('name'));
 if (!review.insert()) throw 'The first CPOR review activity could not be created.';`,
 })
 
+BusinessRule({
+    $id: Now.ID['validate-cpor-inspection-outcome'],
+    name: 'Validate CPOR inspection outcome', table: 'x_au_nswp_cicsm_cpor',
+    when: 'before', action: ['update'], order: 120, active: true,
+    script: `var outcomeFields = ['inspection_conducted', 'final_inspection_date',
+    'charge_laid', 'charge_number', 'not_conducted_reason'];
+if (previous.getValue('lifecycle') == 'complete') {
+    for (var i = 0; i < outcomeFields.length; i++) {
+        if (current.getValue(outcomeFields[i]) != previous.getValue(outcomeFields[i])) {
+            gs.addErrorMessage('A completed inspection outcome cannot be changed through ordinary record update.');
+            current.setAbortAction(true);
+            break;
+        }
+    }
+}
+if (current.getValue('approval_outcome') == 'approved' && current.getValue('lifecycle') == 'complete') {
+    var error = new CporReviewRuntime().validateOutcome(current);
+    if (error) {
+        gs.addErrorMessage(error);
+        current.setAbortAction(true);
+    }
+}`,
+})
+
 // No ordinary direct create, write or delete path is opened by this table.
 Acl({ $id: Now.ID['cpor-case-position-read'], type: 'record', table: 'x_au_nswp_cicsm_cpor', operation: 'read',
     adminOverrides: false, script: 'answer = gs.hasRole("admin") || new x_au_nswp_pcm.OperationalCasePolicy().allows(current, "case.read") || new CporReviewRuntime().canReadCase(current.getUniqueValue());' })
@@ -140,7 +172,7 @@ Acl({ $id: Now.ID['compliance-activity-delete'], type: 'record', table: 'x_au_ns
 List({ table: 'x_au_nswp_cicsm_case', view: default_view,
     columns: ['number', 'short_description', 'service', 'lifecycle', 'requester', 'selected_department', 'sys_updated_on'] })
 List({ table: 'x_au_nswp_cicsm_cpor', view: default_view,
-    columns: ['number', 'short_description', 'lifecycle', 'requester', 'selected_department', 'manager', 'sys_updated_on'] })
+    columns: ['number', 'short_description', 'lifecycle', 'approval_outcome', 'requester', 'selected_department', 'manager', 'sys_updated_on'] })
 List({ table: 'x_au_nswp_cicsm_activity', view: default_view,
     columns: ['number', 'short_description', 'case', 'stage', 'activity_status', 'assigned_to', 'responsible_position'] })
 
@@ -185,6 +217,17 @@ Form({ table: 'x_au_nswp_cicsm_cpor', view: default_view, sections: [
         { layout: 'one-column', elements: [
             { type: 'table_field', field: 'premises_address' },
             { type: 'table_field', field: 'grounds' },
+        ] },
+    ] },
+    { caption: 'Decision and outcome', content: [
+        { layout: 'two-column', leftElements: [
+            { type: 'table_field', field: 'approval_outcome' },
+            { type: 'table_field', field: 'inspection_conducted' },
+            { type: 'table_field', field: 'final_inspection_date' },
+        ], rightElements: [
+            { type: 'table_field', field: 'charge_laid' },
+            { type: 'table_field', field: 'charge_number' },
+            { type: 'table_field', field: 'not_conducted_reason' },
         ] },
     ] },
 ] })

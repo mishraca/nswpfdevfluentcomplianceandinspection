@@ -74,6 +74,22 @@ declare global {
                         table: 'sys_security_acl'
                         id: '4c681b07a2654410b2dddd06ab68230f'
                     }
+                    'cpor-final-approve': {
+                        table: 'sys_ui_action'
+                        id: '026ab98c07ff412b9036c331e473596f'
+                    }
+                    'cpor-final-approve-workspace-layout': {
+                        table: 'sys_ux_form_action_layout_item'
+                        id: '0675e9464d77413bb6f7878d234a940c'
+                    }
+                    'cpor-final-reject': {
+                        table: 'sys_ui_action'
+                        id: 'c85414f486fb447f86060cae01c52adf'
+                    }
+                    'cpor-final-reject-workspace-layout': {
+                        table: 'sys_ux_form_action_layout_item'
+                        id: 'e2d3865209d140fd81724480aa8f0f28'
+                    }
                     'cpor-manager-support': {
                         table: 'sys_ui_action'
                         id: '9315f3308a6f4292947111cbbf00ae39'
@@ -105,6 +121,14 @@ declare global {
                     'cpor-process-new': {
                         table: 'sys_process_flow'
                         id: '0624d41a131c4150b6490d388ffcec1e'
+                    }
+                    'cpor-record-outcome': {
+                        table: 'sys_ui_action'
+                        id: '4b2265af21a04a42852969b212edba8e'
+                    }
+                    'cpor-record-outcome-workspace-layout': {
+                        table: 'sys_ux_form_action_layout_item'
+                        id: '025d91f680cb478ea5e8b80ab5147fb3'
                     }
                     'cpor-review-ajax': {
                         table: 'sys_script_include'
@@ -202,6 +226,10 @@ declare global {
                         table: 'sys_script'
                         id: '58c1bd07c53a4cefb3803397ddbabc40'
                     }
+                    'validate-cpor-inspection-outcome': {
+                        table: 'sys_script'
+                        id: '467df8758907408ca4ec4d44e1ad72f0'
+                    }
                     'validate-cpor-intake-input': {
                         table: 'catalog_script_client'
                         id: '4b579a12a5a64076aa3cf4e2e41c4c4d'
@@ -260,6 +288,26 @@ declare global {
                         key: {
                             name: 'x_au_nswp_cicsm_case'
                             element: 'NULL'
+                            language: 'en'
+                        }
+                    },
+                    {
+                        table: 'sys_choice'
+                        id: '0b4b403baa624699b80c591e51de3ad0'
+                        key: {
+                            name: 'x_au_nswp_cicsm_cpor'
+                            element: 'approval_outcome'
+                            value: 'rejected'
+                            language: 'en'
+                            dependent_value: 'NULL'
+                        }
+                    },
+                    {
+                        table: 'sys_documentation'
+                        id: '0b7fd06982e445dd9d92033e617b6610'
+                        key: {
+                            name: 'x_au_nswp_cicsm_cpor'
+                            element: 'approval_outcome'
                             language: 'en'
                         }
                     },
@@ -377,6 +425,29 @@ declare global {
                             }
                             element: 'manager'
                             position: '7'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_list_element'
+                        id: '15daca3ae801472f9a1781d5513cd334'
+                        key: {
+                            list_id: {
+                                id: 'cf727c5f9ef44daaad7679be9c7e95bb'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_cpor'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                    element: 'NULL'
+                                    relationship: 'NULL'
+                                    parent: 'NULL'
+                                }
+                            }
+                            element: 'approval_outcome'
                         }
                     },
                     {
@@ -583,6 +654,21 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_ui_section'
+                        id: '217cdc66df4740c0bb8669a1caea6e5f'
+                        key: {
+                            name: 'x_au_nswp_cicsm_cpor'
+                            caption: 'Decision and outcome'
+                            view: {
+                                id: 'Default view'
+                                key: {
+                                    name: 'NULL'
+                                }
+                            }
+                            sys_domain: 'global'
+                        }
+                    },
+                    {
                         table: 'sys_ui_list_element'
                         id: '219149401a3b4f76b657ce9473cd34bd'
                         key: {
@@ -664,6 +750,35 @@ declare global {
                             cat_item: '1b80a9541b1d4b29a3593ec281fccd02'
                             variable_set: 'NULL'
                             name: 'inspection16c1Date'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: '287f93af13da4b5986cabd169d7c06ff'
+                        key: {
+                            sys_ui_section: {
+                                id: '217cdc66df4740c0bb8669a1caea6e5f'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_cpor'
+                                    caption: 'Decision and outcome'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'inspection_conducted'
+                            position: '2'
+                        }
+                    },
+                    {
+                        table: 'sys_ux_form_action'
+                        id: '2976d1b2f18345b9a8ed3ea353cf414a'
+                        key: {
+                            ui_action: '4b2265af21a04a42852969b212edba8e'
                         }
                     },
                     {
@@ -1147,6 +1262,28 @@ declare global {
                     },
                     {
                         table: 'sys_ui_element'
+                        id: '40789c01eabb4ad5aa25efd5072d402a'
+                        key: {
+                            sys_ui_section: {
+                                id: '217cdc66df4740c0bb8669a1caea6e5f'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_cpor'
+                                    caption: 'Decision and outcome'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'approval_outcome'
+                            position: '1'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
                         id: '432349dc2a474f4f93d32344b9f1b142'
                         key: {
                             sys_ui_section: {
@@ -1172,6 +1309,27 @@ declare global {
                         id: '433e8e1659874153b78a73f08c8bbe91'
                         key: {
                             name: 'x_au_nswp_cicsm_case'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_action_role'
+                        id: '43563611c77042aa8b7e30dc538d9827'
+                        key: {
+                            sys_ui_action: '026ab98c07ff412b9036c331e473596f'
+                            sys_user_role: {
+                                id: '940ae6de9d1d40af898e72c3a115183f'
+                                key: {
+                                    name: 'x_au_nswp_pcm.case_worker'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        table: 'sys_choice_set'
+                        id: '4364f8da5f094f49b148f6832fed1816'
+                        key: {
+                            name: 'x_au_nswp_cicsm_cpor'
+                            element: 'approval_outcome'
                         }
                     },
                     {
@@ -1226,6 +1384,28 @@ declare global {
                             }
                             element: '.end_split'
                             position: '10'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: '46ed3d749cce45ff9c9ddc93b2feee9e'
+                        key: {
+                            sys_ui_section: {
+                                id: '217cdc66df4740c0bb8669a1caea6e5f'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_cpor'
+                                    caption: 'Decision and outcome'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'final_inspection_date'
+                            position: '3'
                         }
                     },
                     {
@@ -1292,6 +1472,15 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_documentation'
+                        id: '4b0cec364b3f4d3eb97d88bc643f42a2'
+                        key: {
+                            name: 'x_au_nswp_cicsm_cpor'
+                            element: 'not_conducted_reason'
+                            language: 'en'
+                        }
+                    },
+                    {
                         table: 'sys_db_object'
                         id: '4c0a1d26c89d41ae96de88339a8b3c7a'
                         key: {
@@ -1318,6 +1507,14 @@ declare global {
                             }
                             element: 'stage'
                             position: '3'
+                        }
+                    },
+                    {
+                        table: 'sys_dictionary'
+                        id: '4d06c14ced8b406d8920b693d50d5611'
+                        key: {
+                            name: 'x_au_nswp_cicsm_cpor'
+                            element: 'charge_laid'
                         }
                     },
                     {
@@ -1513,6 +1710,15 @@ declare global {
                         key: {
                             name: 'x_au_nswp_cicsm_cpor'
                             element: 'grounds'
+                        }
+                    },
+                    {
+                        table: 'sys_documentation'
+                        id: '625d0d521cbe4b4e98979435e97373c1'
+                        key: {
+                            name: 'x_au_nswp_cicsm_cpor'
+                            element: 'final_inspection_date'
+                            language: 'en'
                         }
                     },
                     {
@@ -1713,6 +1919,50 @@ declare global {
                     },
                     {
                         table: 'sys_ui_element'
+                        id: '6d9a5cf613cb46b99042e7c54225caba'
+                        key: {
+                            sys_ui_section: {
+                                id: '217cdc66df4740c0bb8669a1caea6e5f'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_cpor'
+                                    caption: 'Decision and outcome'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'not_conducted_reason'
+                            position: '7'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: '6efaac2828b24b0e87837b48f839864e'
+                        key: {
+                            sys_ui_section: {
+                                id: '217cdc66df4740c0bb8669a1caea6e5f'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_cpor'
+                                    caption: 'Decision and outcome'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: '.end_split'
+                            position: '8'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
                         id: '71678fd1d6864e828f6be80e10d22eb6'
                         key: {
                             sys_ui_section: {
@@ -1772,6 +2022,28 @@ declare global {
                             }
                             element: '.split'
                             position: '5'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: '737c5bcee89d4a04aa5b9061c202612a'
+                        key: {
+                            sys_ui_section: {
+                                id: '217cdc66df4740c0bb8669a1caea6e5f'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_cpor'
+                                    caption: 'Decision and outcome'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: '.split'
+                            position: '4'
                         }
                     },
                     {
@@ -1904,6 +2176,14 @@ declare global {
                         key: {
                             name: 'x_au_nswp_cicsm_cpor'
                             element: 'inspection_16c2_date'
+                        }
+                    },
+                    {
+                        table: 'sys_dictionary'
+                        id: '77eb67dc633b4e3d83c82a899da5ea19'
+                        key: {
+                            name: 'x_au_nswp_cicsm_cpor'
+                            element: 'inspection_conducted'
                         }
                     },
                     {
@@ -2106,12 +2386,42 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_ui_element'
+                        id: '8c12d0be657345a3b8c1c1824f19b1a0'
+                        key: {
+                            sys_ui_section: {
+                                id: '217cdc66df4740c0bb8669a1caea6e5f'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_cpor'
+                                    caption: 'Decision and outcome'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: '.begin_split'
+                            position: '0'
+                        }
+                    },
+                    {
                         table: 'sys_documentation'
                         id: '8c24e665ea4e43a7ba54dabf0d3d22b5'
                         key: {
                             name: 'x_au_nswp_cicsm_cpor'
                             element: 'external_contact_number'
                             language: 'en'
+                        }
+                    },
+                    {
+                        table: 'sys_dictionary'
+                        id: '8cb6fe691f0b4374bb1fc233888f52df'
+                        key: {
+                            name: 'x_au_nswp_cicsm_cpor'
+                            element: 'charge_number'
                         }
                     },
                     {
@@ -2125,6 +2435,13 @@ declare global {
                                     name: 'x_au_nswp_pcm.configuration_admin'
                                 }
                             }
+                        }
+                    },
+                    {
+                        table: 'sys_ux_form_action'
+                        id: '8e300c043bc4466dbd61683856902548'
+                        key: {
+                            ui_action: '026ab98c07ff412b9036c331e473596f'
                         }
                     },
                     {
@@ -2232,6 +2549,14 @@ declare global {
                             }
                             element: 'responsible_position'
                             position: '7'
+                        }
+                    },
+                    {
+                        table: 'sys_dictionary'
+                        id: '9d0c2006f30d43b4af540999bf243a70'
+                        key: {
+                            name: 'x_au_nswp_cicsm_cpor'
+                            element: 'final_inspection_date'
                         }
                     },
                     {
@@ -2359,6 +2684,39 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_ui_form_section'
+                        id: 'a3cc0fe9a89549348804cd93a5dbbdc8'
+                        key: {
+                            sys_ui_form: {
+                                id: '483d7a5a7f21428092a6c322cd96cc27'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_cpor'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            sys_ui_section: {
+                                id: '217cdc66df4740c0bb8669a1caea6e5f'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_cpor'
+                                    caption: 'Decision and outcome'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                        }
+                    },
+                    {
                         table: 'sys_ui_element'
                         id: 'a3eb703676f349e796c22e3589d9e5b5'
                         key: {
@@ -2378,6 +2736,28 @@ declare global {
                             }
                             element: 'cpr_case_number'
                             position: '4'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: 'a4054ce2390149bbaaab7afab333cff9'
+                        key: {
+                            sys_ui_section: {
+                                id: '217cdc66df4740c0bb8669a1caea6e5f'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_cpor'
+                                    caption: 'Decision and outcome'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'charge_number'
+                            position: '6'
                         }
                     },
                     {
@@ -2625,6 +3005,17 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_choice'
+                        id: 'b0251453328b4d5baa9d7460d218e83f'
+                        key: {
+                            name: 'x_au_nswp_cicsm_cpor'
+                            element: 'charge_laid'
+                            value: 'no'
+                            language: 'en'
+                            dependent_value: 'NULL'
+                        }
+                    },
+                    {
                         table: 'sys_ui_list_element'
                         id: 'b04bb876236248aaa552ba0965ebfadc'
                         key: {
@@ -2749,6 +3140,14 @@ declare global {
                         key: {
                             name: 'x_au_nswp_cicsm_cpor'
                             element: 'inspection_16c2_event_number'
+                        }
+                    },
+                    {
+                        table: 'sys_dictionary'
+                        id: 'bb6a4d22b91b4dd981f812f8ce678dae'
+                        key: {
+                            name: 'x_au_nswp_cicsm_cpor'
+                            element: 'approval_outcome'
                         }
                     },
                     {
@@ -2900,6 +3299,15 @@ declare global {
                                 }
                             }
                             element: 'approval_stage'
+                        }
+                    },
+                    {
+                        table: 'sys_documentation'
+                        id: 'c427bb16b35c4665bedb92aeb2c8bf2a'
+                        key: {
+                            name: 'x_au_nswp_cicsm_cpor'
+                            element: 'charge_laid'
+                            language: 'en'
                         }
                     },
                     {
@@ -3121,6 +3529,15 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_documentation'
+                        id: 'd0e1e4314ee74396af6325f030dd31a1'
+                        key: {
+                            name: 'x_au_nswp_cicsm_cpor'
+                            element: 'inspection_conducted'
+                            language: 'en'
+                        }
+                    },
+                    {
                         table: 'sys_ui_list_element'
                         id: 'd3f06b62180d463a8c60667d95de3a50'
                         key: {
@@ -3186,6 +3603,14 @@ declare global {
                                 }
                             }
                             element: 'short_description'
+                        }
+                    },
+                    {
+                        table: 'sys_choice_set'
+                        id: 'd6a3723f1ae2417da7c47283dcd1eaca'
+                        key: {
+                            name: 'x_au_nswp_cicsm_cpor'
+                            element: 'inspection_conducted'
                         }
                     },
                     {
@@ -3316,6 +3741,14 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_choice_set'
+                        id: 'de1e202e54ff4ed5857d127c8a50293a'
+                        key: {
+                            name: 'x_au_nswp_cicsm_cpor'
+                            element: 'charge_laid'
+                        }
+                    },
+                    {
                         table: 'item_option_new'
                         id: 'dee82f39b4a8406b8bad31e5d62139d1'
                         key: {
@@ -3366,6 +3799,14 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_dictionary'
+                        id: 'e20ef3b2b3494fb4865458bf0b7bbed6'
+                        key: {
+                            name: 'x_au_nswp_cicsm_cpor'
+                            element: 'not_conducted_reason'
+                        }
+                    },
+                    {
                         table: 'sys_ui_element'
                         id: 'e24037d650f24d0b8efe31a8d83c070b'
                         key: {
@@ -3399,6 +3840,17 @@ declare global {
                                 }
                             }
                             sys_domain: 'global'
+                        }
+                    },
+                    {
+                        table: 'sys_choice'
+                        id: 'e65b8ba776de42899058cc13635bccfd'
+                        key: {
+                            name: 'x_au_nswp_cicsm_cpor'
+                            element: 'inspection_conducted'
+                            value: 'no'
+                            language: 'en'
+                            dependent_value: 'NULL'
                         }
                     },
                     {
@@ -3521,6 +3973,17 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_choice'
+                        id: 'e879f4ffb52e4f73bff3e2f2d1da207a'
+                        key: {
+                            name: 'x_au_nswp_cicsm_cpor'
+                            element: 'inspection_conducted'
+                            value: 'yes'
+                            language: 'en'
+                            dependent_value: 'NULL'
+                        }
+                    },
+                    {
                         table: 'sys_documentation'
                         id: 'e8af8fe292884b3eb7d8f7b4303f7ff8'
                         key: {
@@ -3546,6 +4009,39 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_ui_element'
+                        id: 'ec5cc81ce1b241f8a761bd7957a8b5bf'
+                        key: {
+                            sys_ui_section: {
+                                id: '217cdc66df4740c0bb8669a1caea6e5f'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_cpor'
+                                    caption: 'Decision and outcome'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'charge_laid'
+                            position: '5'
+                        }
+                    },
+                    {
+                        table: 'sys_choice'
+                        id: 'ec7915ac353c4ad0be0cb89b8717ae45'
+                        key: {
+                            name: 'x_au_nswp_cicsm_cpor'
+                            element: 'approval_outcome'
+                            value: 'approved'
+                            language: 'en'
+                            dependent_value: 'NULL'
+                        }
+                    },
+                    {
                         table: 'sys_dictionary'
                         id: 'ec8b29ab705d4fe18ecac884c86376c7'
                         key: {
@@ -3559,6 +4055,17 @@ declare global {
                         key: {
                             name: 'x_au_nswp_cicsm_cpor'
                             element: 'manager'
+                        }
+                    },
+                    {
+                        table: 'sys_choice'
+                        id: 'edc36413740b48f5b7957f89b517d6d7'
+                        key: {
+                            name: 'x_au_nswp_cicsm_cpor'
+                            element: 'charge_laid'
+                            value: 'yes'
+                            language: 'en'
+                            dependent_value: 'NULL'
                         }
                     },
                     {
@@ -3592,6 +4099,22 @@ declare global {
                             }
                             element: 'date_of_birth'
                             position: '2'
+                        }
+                    },
+                    {
+                        table: 'sys_documentation'
+                        id: 'f3de0081441f407bbd8659ec9682828a'
+                        key: {
+                            name: 'x_au_nswp_cicsm_cpor'
+                            element: 'charge_number'
+                            language: 'en'
+                        }
+                    },
+                    {
+                        table: 'sys_ux_form_action'
+                        id: 'f487448030ac4a0fbb3ecb6aad9f6839'
+                        key: {
+                            ui_action: 'c85414f486fb447f86060cae01c52adf'
                         }
                     },
                     {
@@ -3820,6 +4343,19 @@ declare global {
                             cat_item: '1b80a9541b1d4b29a3593ec281fccd02'
                             variable_set: 'NULL'
                             name: 'premisesAddress'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_action_role'
+                        id: 'ff810802dd1141128b0a17f1cb5ff894'
+                        key: {
+                            sys_ui_action: 'c85414f486fb447f86060cae01c52adf'
+                            sys_user_role: {
+                                id: '940ae6de9d1d40af898e72c3a115183f'
+                                key: {
+                                    name: 'x_au_nswp_pcm.case_worker'
+                                }
+                            }
                         }
                     },
                 ]
