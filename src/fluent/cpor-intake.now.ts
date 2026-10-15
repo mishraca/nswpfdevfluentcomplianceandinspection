@@ -3,14 +3,13 @@ import {
     ContainerSplitVariable, ContainerStartVariable, DateVariable,
     MultiLineTextVariable, ReferenceVariable, SingleLineTextVariable,
 } from '@servicenow/sdk/core'
-import { x_au_nswp_cicsm_cpor } from './compliance-case.now'
 
 export const cporIntake = CatalogItemRecordProducer({
     $id: Now.ID['cpor-16d-record-producer'],
     name: 'Apply for CPOR 16D Permission',
     shortDescription: 'Request permission for a proposed 16D inspection.',
     description: 'Provide the application details and the two previous inspection references.',
-    table: x_au_nswp_cicsm_cpor,
+    table: 'x_au_nswp_cicsm_cpor',
     active: true,
     state: 'published',
     availability: 'both',
