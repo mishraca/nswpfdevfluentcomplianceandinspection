@@ -412,6 +412,14 @@ declare global {
                         }
                     },
                     {
+                        table: 'fx_price'
+                        id: '05c194c05584db106f03be439e6ad69d'
+                        key: {
+                            id: 'cbc5005406574f09859d66836c0137fc'
+                            field: 'rec_price_if_checked'
+                        }
+                    },
+                    {
                         table: 'sys_ui_element'
                         id: '07622a5cbf854fdbaea2153db58652c6'
                         key: {
@@ -444,6 +452,22 @@ declare global {
                                     name: 'x_au_nswp_pcm.case_worker'
                                 }
                             }
+                        }
+                    },
+                    {
+                        table: 'fx_price'
+                        id: '09c1d4c05584db106f03be439e6ad604'
+                        key: {
+                            id: 'c5a8a130a8bf45ebaa9dc29dbf018ec0'
+                            field: 'rec_price_if_checked'
+                        }
+                    },
+                    {
+                        table: 'fx_price'
+                        id: '09c1d4c05584db106f03be439e6ad667'
+                        key: {
+                            id: 'c9ebd7046c9b4e01ab42b6fb03800290'
+                            field: 'price_if_checked'
                         }
                     },
                     {
@@ -518,6 +542,14 @@ declare global {
                         id: '0d8b2691f34546e3bec4bf06eacba1c6'
                         key: {
                             ui_action: '01a38ed39b04425db2261fdf9280391e'
+                        }
+                    },
+                    {
+                        table: 'fx_price'
+                        id: '0dc1d4c05584db106f03be439e6ad601'
+                        key: {
+                            id: 'a746eae7cfe74b39b3a03f402053b000'
+                            field: 'price_if_checked'
                         }
                     },
                     {
@@ -918,6 +950,14 @@ declare global {
                         }
                     },
                     {
+                        table: 'fx_price'
+                        id: '24c114c05584db106f03be439e6ad66d'
+                        key: {
+                            id: '050bbd289ac14a4c9ba3f707a523728c'
+                            field: 'rec_price_if_checked'
+                        }
+                    },
+                    {
                         table: 'sys_ui_element'
                         id: '251a3f622e6f48dca8394b1715b934b8'
                         key: {
@@ -1020,6 +1060,14 @@ declare global {
                             }
                             element: 'inspection_conducted'
                             position: '2'
+                        }
+                    },
+                    {
+                        table: 'fx_price'
+                        id: '28c114c05584db106f03be439e6ad674'
+                        key: {
+                            id: '4925f191242f4b06b160076276601d62'
+                            field: 'price_if_checked'
                         }
                     },
                     {
@@ -1126,6 +1174,22 @@ declare global {
                             }
                             element: '.end_split'
                             position: '14'
+                        }
+                    },
+                    {
+                        table: 'fx_price'
+                        id: '2cc114c05584db106f03be439e6ad626'
+                        key: {
+                            id: '625f67f747db4d40b73ba606ec100d11'
+                            field: 'price_if_checked'
+                        }
+                    },
+                    {
+                        table: 'fx_price'
+                        id: '2cc114c05584db106f03be439e6ad6d0'
+                        key: {
+                            id: '2d21ff1e21e94b638ee2f72bdf9b0713'
+                            field: 'price_if_checked'
                         }
                     },
                     {
@@ -1242,6 +1306,22 @@ declare global {
                             name: 'x_au_nswp_cicsm_cpor'
                             element: 'registerable_person_name'
                             language: 'en'
+                        }
+                    },
+                    {
+                        table: 'fx_price'
+                        id: '30c114c05584db106f03be439e6ad6d6'
+                        key: {
+                            id: '6d1103a91f1d4a00beda2f2fda325de9'
+                            field: 'price_if_checked'
+                        }
+                    },
+                    {
+                        table: 'fx_price'
+                        id: '30c154c05584db106f03be439e6ad692'
+                        key: {
+                            id: '1eeed3f96d664cdfab29d2a4541a9777'
+                            field: 'price_if_checked'
                         }
                     },
                     {
@@ -1451,6 +1531,14 @@ declare global {
                         }
                     },
                     {
+                        table: 'fx_price'
+                        id: '38c154c05584db106f03be439e6ad68a'
+                        key: {
+                            id: '494df0b90be4466db357bda1972af5d1'
+                            field: 'rec_price_if_checked'
+                        }
+                    },
+                    {
                         table: 'sys_security_acl_role'
                         id: '394c4aef64df4009b66a429053c9caf0'
                         key: {
@@ -1547,6 +1635,22 @@ declare global {
                         key: {
                             name: 'x_au_nswp_cicsm_amendment_rule'
                             element: 'active'
+                        }
+                    },
+                    {
+                        table: 'fx_price'
+                        id: '3cc114c05584db106f03be439e6ad6d8'
+                        key: {
+                            id: '6634580e36fe4402ae341e0b61759292'
+                            field: 'rec_price_if_checked'
+                        }
+                    },
+                    {
+                        table: 'fx_price'
+                        id: '3cc154c05584db106f03be439e6ad6e4'
+                        key: {
+                            id: 'c69b11d616324fbc8b071812978fe00b'
+                            field: 'price_if_checked'
                         }
                     },
                     {
@@ -1647,6 +1751,14 @@ declare global {
                         }
                     },
                     {
+                        table: 'fx_price'
+                        id: '41c1d4c05584db106f03be439e6ad6bd'
+                        key: {
+                            id: 'dcc42382e5cd41c78fd3e5d3fba97501'
+                            field: 'rec_price_if_checked'
+                        }
+                    },
+                    {
                         table: 'sys_ui_element'
                         id: '432349dc2a474f4f93d32344b9f1b142'
                         deleted: true
@@ -1731,6 +1843,30 @@ declare global {
                                 }
                             }
                             element: 'name'
+                        }
+                    },
+                    {
+                        table: 'fx_price'
+                        id: '45c194c05584db106f03be439e6ad69f'
+                        key: {
+                            id: 'cbc5005406574f09859d66836c0137fc'
+                            field: 'price_if_checked'
+                        }
+                    },
+                    {
+                        table: 'fx_price'
+                        id: '45c194c05584db106f03be439e6ad6a3'
+                        key: {
+                            id: 'fe359cd79d4549c1aabdd97e8d297930'
+                            field: 'rec_price_if_checked'
+                        }
+                    },
+                    {
+                        table: 'fx_price'
+                        id: '45c1d4c05584db106f03be439e6ad609'
+                        key: {
+                            id: 'cee3dc129e984709bee07b7eba2a460b'
+                            field: 'rec_price_if_checked'
                         }
                     },
                     {
@@ -1869,6 +2005,22 @@ declare global {
                             cat_item: '1b80a9541b1d4b29a3593ec281fccd02'
                             variable_set: 'NULL'
                             name: 'selectedDepartment'
+                        }
+                    },
+                    {
+                        table: 'fx_price'
+                        id: '49c194c05584db106f03be439e6ad663'
+                        key: {
+                            id: 'b78d3774541447c28c7ecf5b6771f2d7'
+                            field: 'rec_price_if_checked'
+                        }
+                    },
+                    {
+                        table: 'fx_price'
+                        id: '49c1d4c05584db106f03be439e6ad606'
+                        key: {
+                            id: 'c5a8a130a8bf45ebaa9dc29dbf018ec0'
+                            field: 'price_if_checked'
                         }
                     },
                     {
@@ -2223,6 +2375,22 @@ declare global {
                             }
                             element: 'requester'
                             position: '7'
+                        }
+                    },
+                    {
+                        table: 'fx_price'
+                        id: '64c114c05584db106f03be439e6ad66f'
+                        key: {
+                            id: '050bbd289ac14a4c9ba3f707a523728c'
+                            field: 'price_if_checked'
+                        }
+                    },
+                    {
+                        table: 'fx_price'
+                        id: '64c1d0c05584db106f03be439e6ad664'
+                        key: {
+                            id: '277388c66e1846e9abde365a9dfd15a2'
+                            field: 'rec_price_if_checked'
                         }
                     },
                     {
@@ -2612,6 +2780,14 @@ declare global {
                         }
                     },
                     {
+                        table: 'fx_price'
+                        id: '74c154c05584db106f03be439e6ad6ea'
+                        key: {
+                            id: 'dee82f39b4a8406b8bad31e5d62139d1'
+                            field: 'price_if_checked'
+                        }
+                    },
+                    {
                         table: 'sys_ui_element'
                         id: '7501afc67d02440caf3f2fd898bc93f0'
                         deleted: true
@@ -2697,6 +2873,22 @@ declare global {
                         }
                     },
                     {
+                        table: 'fx_price'
+                        id: '78c154c05584db106f03be439e6ad63a'
+                        key: {
+                            id: '7edd964a9b6a43b2b42e8fa4e6a517be'
+                            field: 'rec_price_if_checked'
+                        }
+                    },
+                    {
+                        table: 'fx_price'
+                        id: '78c154c05584db106f03be439e6ad68c'
+                        key: {
+                            id: '494df0b90be4466db357bda1972af5d1'
+                            field: 'price_if_checked'
+                        }
+                    },
+                    {
                         table: 'sys_dictionary'
                         id: '791a1090096e4580bc750a177045a4e5'
                         key: {
@@ -2719,6 +2911,14 @@ declare global {
                             element: 'NULL'
                             relationship: 'NULL'
                             parent: 'NULL'
+                        }
+                    },
+                    {
+                        table: 'fx_price'
+                        id: '7cc154c05584db106f03be439e6ad637'
+                        key: {
+                            id: '7e7ce21b6b274d77b727c50fb9713066'
+                            field: 'price_if_checked'
                         }
                     },
                     {
@@ -2798,6 +2998,23 @@ declare global {
                         key: {
                             name: 'x_au_nswp_cicsm_activity'
                             element: 'review_comments'
+                        }
+                    },
+                    {
+                        table: 'fx_price'
+                        id: '84c110c05584db106f03be439e6ad6ae'
+                        deleted: false
+                        key: {
+                            id: '1b80a9541b1d4b29a3593ec281fccd02'
+                            field: 'price'
+                        }
+                    },
+                    {
+                        table: 'fx_price'
+                        id: '85c194c05584db106f03be439e6ad6a5'
+                        key: {
+                            id: 'fe359cd79d4549c1aabdd97e8d297930'
+                            field: 'price_if_checked'
                         }
                     },
                     {
@@ -2885,6 +3102,22 @@ declare global {
                         }
                     },
                     {
+                        table: 'fx_price'
+                        id: '89c194c05584db106f03be439e6ad665'
+                        key: {
+                            id: 'b78d3774541447c28c7ecf5b6771f2d7'
+                            field: 'price_if_checked'
+                        }
+                    },
+                    {
+                        table: 'fx_price'
+                        id: '89c1d4c05584db106f03be439e6ad665'
+                        key: {
+                            id: 'c9ebd7046c9b4e01ab42b6fb03800290'
+                            field: 'rec_price_if_checked'
+                        }
+                    },
+                    {
                         table: 'sys_ui_element'
                         id: '8b92fbf0cc64460f9a758506a79c9167'
                         deleted: true
@@ -2957,6 +3190,14 @@ declare global {
                                     name: 'x_au_nswp_pcm.configuration_admin'
                                 }
                             }
+                        }
+                    },
+                    {
+                        table: 'fx_price'
+                        id: '8dc1d4c05584db106f03be439e6ad6b7'
+                        key: {
+                            id: 'ad4d16ac2ddd4a82bc1a545fd5c1095f'
+                            field: 'rec_price_if_checked'
                         }
                     },
                     {
@@ -3205,6 +3446,14 @@ declare global {
                         }
                     },
                     {
+                        table: 'fx_price'
+                        id: 'a0c114c05584db106f03be439e6ad66a'
+                        key: {
+                            id: '9082578ac1d64a14966cbce2a72d8cd1'
+                            field: 'price_if_checked'
+                        }
+                    },
+                    {
                         table: 'sys_ui_element'
                         id: 'a0d6137e093740be99813cc531568e56'
                         key: {
@@ -3369,6 +3618,14 @@ declare global {
                         }
                     },
                     {
+                        table: 'fx_price'
+                        id: 'a4c114c05584db106f03be439e6ad605'
+                        key: {
+                            id: '52029b7f72ed4169914fd3686f5a046d'
+                            field: 'rec_price_if_checked'
+                        }
+                    },
+                    {
                         table: 'sys_ui_element'
                         id: 'a6a6aaa260f441c38b0eca52c238a412'
                         key: {
@@ -3444,6 +3701,14 @@ declare global {
                         }
                     },
                     {
+                        table: 'fx_price'
+                        id: 'a8c1d0c05584db106f03be439e6ad6a0'
+                        key: {
+                            id: '6c7c8074b69b4ecf825608144fbca88c'
+                            field: 'rec_price_if_checked'
+                        }
+                    },
+                    {
                         table: 'sys_ui_list'
                         id: 'a8c8cdc59b6c4858b59455876b1cd836'
                         key: {
@@ -3506,6 +3771,14 @@ declare global {
                                 }
                             }
                             sys_domain: 'global'
+                        }
+                    },
+                    {
+                        table: 'fx_price'
+                        id: 'acc114c05584db106f03be439e6ad629'
+                        key: {
+                            id: '9082578ac1d64a14966cbce2a72d8cd1'
+                            field: 'rec_price_if_checked'
                         }
                     },
                     {
@@ -3633,6 +3906,14 @@ declare global {
                                 }
                             }
                             element: 'number'
+                        }
+                    },
+                    {
+                        table: 'fx_price'
+                        id: 'b0c154c05584db106f03be439e6ad690'
+                        key: {
+                            id: '1eeed3f96d664cdfab29d2a4541a9777'
+                            field: 'rec_price_if_checked'
                         }
                     },
                     {
@@ -3776,6 +4057,14 @@ declare global {
                         }
                     },
                     {
+                        table: 'fx_price'
+                        id: 'b8c154c05584db106f03be439e6ad63c'
+                        key: {
+                            id: '7edd964a9b6a43b2b42e8fa4e6a517be'
+                            field: 'price_if_checked'
+                        }
+                    },
+                    {
                         table: 'sys_dictionary'
                         id: 'b8e7cc6d9bf54f91869481193a225942'
                         key: {
@@ -3811,6 +4100,14 @@ declare global {
                             }
                             element: 'premises_address'
                             position: '15'
+                        }
+                    },
+                    {
+                        table: 'fx_price'
+                        id: 'bcc154c05584db106f03be439e6ad6e2'
+                        key: {
+                            id: 'c69b11d616324fbc8b071812978fe00b'
+                            field: 'rec_price_if_checked'
                         }
                     },
                     {
@@ -4043,6 +4340,14 @@ declare global {
                         }
                     },
                     {
+                        table: 'fx_price'
+                        id: 'c5c1d4c05584db106f03be439e6ad662'
+                        key: {
+                            id: 'cee3dc129e984709bee07b7eba2a460b'
+                            field: 'price_if_checked'
+                        }
+                    },
+                    {
                         table: 'item_option_new'
                         id: 'c69b11d616324fbc8b071812978fe00b'
                         key: {
@@ -4105,6 +4410,14 @@ declare global {
                         }
                     },
                     {
+                        table: 'fx_price'
+                        id: 'c9c194c05584db106f03be439e6ad6ff'
+                        key: {
+                            id: 'a746eae7cfe74b39b3a03f402053b000'
+                            field: 'rec_price_if_checked'
+                        }
+                    },
+                    {
                         table: 'item_option_new'
                         id: 'c9ebd7046c9b4e01ab42b6fb03800290'
                         key: {
@@ -4142,6 +4455,14 @@ declare global {
                             }
                             element: 'selected_department'
                             position: '5'
+                        }
+                    },
+                    {
+                        table: 'fx_price'
+                        id: 'cdc1d4c05584db106f03be439e6ad6b9'
+                        key: {
+                            id: 'ad4d16ac2ddd4a82bc1a545fd5c1095f'
+                            field: 'price_if_checked'
                         }
                     },
                     {
@@ -4520,6 +4841,14 @@ declare global {
                         }
                     },
                     {
+                        table: 'fx_price'
+                        id: 'ddc1d4c05584db106f03be439e6ad6be'
+                        key: {
+                            id: 'dcc42382e5cd41c78fd3e5d3fba97501'
+                            field: 'price_if_checked'
+                        }
+                    },
+                    {
                         table: 'sys_choice_set'
                         id: 'de1e202e54ff4ed5857d127c8a50293a'
                         key: {
@@ -4557,6 +4886,22 @@ declare global {
                                 }
                             }
                             element: 'sys_updated_on'
+                        }
+                    },
+                    {
+                        table: 'fx_price'
+                        id: 'e0c114c05584db106f03be439e6ad620'
+                        key: {
+                            id: '52029b7f72ed4169914fd3686f5a046d'
+                            field: 'price_if_checked'
+                        }
+                    },
+                    {
+                        table: 'fx_price'
+                        id: 'e0c1d0c05584db106f03be439e6ad6fa'
+                        key: {
+                            id: '6c7c8074b69b4ecf825608144fbca88c'
+                            field: 'price_if_checked'
                         }
                     },
                     {
@@ -4619,6 +4964,22 @@ declare global {
                                 }
                             }
                             sys_domain: 'global'
+                        }
+                    },
+                    {
+                        table: 'fx_price'
+                        id: 'e4c114c05584db106f03be439e6ad672'
+                        key: {
+                            id: '4925f191242f4b06b160076276601d62'
+                            field: 'rec_price_if_checked'
+                        }
+                    },
+                    {
+                        table: 'fx_price'
+                        id: 'e4c1d0c05584db106f03be439e6ad69a'
+                        key: {
+                            id: '277388c66e1846e9abde365a9dfd15a2'
+                            field: 'price_if_checked'
                         }
                     },
                     {
@@ -4772,6 +5133,22 @@ declare global {
                         }
                     },
                     {
+                        table: 'fx_price'
+                        id: 'e8c114c05584db106f03be439e6ad624'
+                        key: {
+                            id: '625f67f747db4d40b73ba606ec100d11'
+                            field: 'rec_price_if_checked'
+                        }
+                    },
+                    {
+                        table: 'fx_price'
+                        id: 'e8c114c05584db106f03be439e6ad6ce'
+                        key: {
+                            id: '2d21ff1e21e94b638ee2f72bdf9b0713'
+                            field: 'rec_price_if_checked'
+                        }
+                    },
+                    {
                         table: 'sys_dictionary'
                         id: 'ea009f7d0d6d4823aaa50a34ae42e899'
                         key: {
@@ -4841,6 +5218,14 @@ declare global {
                         key: {
                             name: 'x_au_nswp_cicsm_cpor'
                             element: 'premises_address'
+                        }
+                    },
+                    {
+                        table: 'fx_price'
+                        id: 'ecc114c05584db106f03be439e6ad6d3'
+                        key: {
+                            id: '6d1103a91f1d4a00beda2f2fda325de9'
+                            field: 'rec_price_if_checked'
                         }
                     },
                     {
@@ -4917,6 +5302,14 @@ declare global {
                         id: 'f487448030ac4a0fbb3ecb6aad9f6839'
                         key: {
                             ui_action: 'c85414f486fb447f86060cae01c52adf'
+                        }
+                    },
+                    {
+                        table: 'fx_price'
+                        id: 'f4c154c05584db106f03be439e6ad6e8'
+                        key: {
+                            id: 'dee82f39b4a8406b8bad31e5d62139d1'
+                            field: 'rec_price_if_checked'
                         }
                     },
                     {
@@ -5067,6 +5460,22 @@ declare global {
                                     name: 'x_au_nswp_pcm.configuration_admin'
                                 }
                             }
+                        }
+                    },
+                    {
+                        table: 'fx_price'
+                        id: 'f8c154c05584db106f03be439e6ad631'
+                        key: {
+                            id: '6634580e36fe4402ae341e0b61759292'
+                            field: 'price_if_checked'
+                        }
+                    },
+                    {
+                        table: 'fx_price'
+                        id: 'f8c154c05584db106f03be439e6ad635'
+                        key: {
+                            id: '7e7ce21b6b274d77b727c50fb9713066'
+                            field: 'rec_price_if_checked'
                         }
                     },
                     {
