@@ -44,7 +44,9 @@ activity; they do not create a revision record or draft case. A stage setting
 and CPOR amendment rule select which submitted fields may change. The server
 also enforces a fixed ceiling of CPOR application fields and checks the
 actual submitter through Core case access policy. Case field auditing is
-configured to record saved changes. Guarded client-callable methods are defined for the native
+configured to record saved changes. Case and field write ACLs permit only the
+configured amendment fields while information is awaited; all other fields
+remain protected. Guarded client-callable methods are defined for the native
 officer interface, which still needs to be connected and checked in the police
 instance.
 

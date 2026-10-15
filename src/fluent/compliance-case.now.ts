@@ -154,16 +154,60 @@ if (current.getValue('approval_outcome') == 'approved' && current.getValue('life
 }`,
 })
 
+BusinessRule({
+    $id: Now.ID['protect-cpor-amendment-fields'],
+    name: 'Protect fields during CPOR amendments', table: 'x_au_nswp_cicsm_cpor',
+    when: 'before', action: ['update'], order: 115, active: true,
+    script: `if (previous.getValue('lifecycle') == 'awaiting_information' &&
+    current.getValue('lifecycle') == 'awaiting_information') {
+    var permitted;
+    try {
+        permitted = new CporReviewRuntime().amendmentContext(previous.getUniqueValue()).fields;
+    } catch (error) {
+        gs.addErrorMessage('This application cannot be amended by the current person.');
+        current.setAbortAction(true);
+    }
+    if (permitted) {
+        var elements = current.getElements();
+        for (var i = 0; i < elements.length; i++) {
+            var field = elements[i].getName();
+            if (field != 'variables' && !/^sys_/.test(field) && elements[i].changes() &&
+                permitted.indexOf(field) < 0) {
+                gs.addErrorMessage('Only configured application details may be amended.');
+                current.setAbortAction(true);
+                break;
+            }
+        }
+    }
+}`,
+})
+
 // No ordinary direct create, write or delete path is opened by this table.
 Acl({ $id: Now.ID['cpor-case-position-read'], type: 'record', table: 'x_au_nswp_cicsm_cpor', operation: 'read',
     adminOverrides: false, script: 'answer = gs.hasRole("admin") || new x_au_nswp_pcm.OperationalCasePolicy().allows(current, "case.read") || new CporReviewRuntime().canReadCase(current.getUniqueValue());' })
 Acl({ $id: Now.ID['compliance-activity-position-read'], type: 'record', table: 'x_au_nswp_cicsm_activity', operation: 'read',
     adminOverrides: false, script: 'answer = gs.hasRole("admin") || new x_au_nswp_pcm.OperationalCasePolicy().allowsActivity(current) || new CporReviewRuntime().canReadActivity(current);' })
 Acl({ $id: Now.ID['compliance-case-create'], type: 'record', table: 'x_au_nswp_cicsm_case', operation: 'create', decisionType: 'deny', adminOverrides: false, script: 'answer = false;' })
-Acl({ $id: Now.ID['compliance-case-write'], type: 'record', table: 'x_au_nswp_cicsm_case', operation: 'write', decisionType: 'deny', adminOverrides: false, script: 'answer = false;' })
+Acl({ $id: Now.ID['compliance-case-write'], type: 'record', table: 'x_au_nswp_cicsm_case', operation: 'write',
+    adminOverrides: false, script: 'answer = new CporReviewRuntime().canAmend(current.getUniqueValue());' })
 Acl({ $id: Now.ID['compliance-case-delete'], type: 'record', table: 'x_au_nswp_cicsm_case', operation: 'delete', decisionType: 'deny', adminOverrides: false, script: 'answer = false;' })
 Acl({ $id: Now.ID['cpor-case-create'], type: 'record', table: 'x_au_nswp_cicsm_cpor', operation: 'create', decisionType: 'deny', adminOverrides: false, script: 'answer = false;' })
-Acl({ $id: Now.ID['cpor-case-write'], type: 'record', table: 'x_au_nswp_cicsm_cpor', operation: 'write', decisionType: 'deny', adminOverrides: false, script: 'answer = false;' })
+Acl({ $id: Now.ID['cpor-case-write'], type: 'record', table: 'x_au_nswp_cicsm_cpor', operation: 'write',
+    adminOverrides: false, script: 'answer = new CporReviewRuntime().canAmend(current.getUniqueValue());' })
+Acl({ $id: Now.ID['cpor-case-field-write-default-deny'], type: 'record', table: 'x_au_nswp_cicsm_cpor',
+    field: '*', operation: 'write', decisionType: 'deny', adminOverrides: false, script: 'answer = false;' })
+Acl({ $id: Now.ID['cpor-amend-contact-write'], type: 'record', table: 'x_au_nswp_cicsm_cpor', field: 'external_contact_number', operation: 'write', adminOverrides: false, script: 'answer = new CporReviewRuntime().canAmendField(current.getUniqueValue(), "external_contact_number");' })
+Acl({ $id: Now.ID['cpor-amend-name-write'], type: 'record', table: 'x_au_nswp_cicsm_cpor', field: 'registerable_person_name', operation: 'write', adminOverrides: false, script: 'answer = new CporReviewRuntime().canAmendField(current.getUniqueValue(), "registerable_person_name");' })
+Acl({ $id: Now.ID['cpor-amend-birth-write'], type: 'record', table: 'x_au_nswp_cicsm_cpor', field: 'date_of_birth', operation: 'write', adminOverrides: false, script: 'answer = new CporReviewRuntime().canAmendField(current.getUniqueValue(), "date_of_birth");' })
+Acl({ $id: Now.ID['cpor-amend-cni-write'], type: 'record', table: 'x_au_nswp_cicsm_cpor', field: 'cni', operation: 'write', adminOverrides: false, script: 'answer = new CporReviewRuntime().canAmendField(current.getUniqueValue(), "cni");' })
+Acl({ $id: Now.ID['cpor-amend-cpr-write'], type: 'record', table: 'x_au_nswp_cicsm_cpor', field: 'cpr_case_number', operation: 'write', adminOverrides: false, script: 'answer = new CporReviewRuntime().canAmendField(current.getUniqueValue(), "cpr_case_number");' })
+Acl({ $id: Now.ID['cpor-amend-address-write'], type: 'record', table: 'x_au_nswp_cicsm_cpor', field: 'premises_address', operation: 'write', adminOverrides: false, script: 'answer = new CporReviewRuntime().canAmendField(current.getUniqueValue(), "premises_address");' })
+Acl({ $id: Now.ID['cpor-amend-grounds-write'], type: 'record', table: 'x_au_nswp_cicsm_cpor', field: 'grounds', operation: 'write', adminOverrides: false, script: 'answer = new CporReviewRuntime().canAmendField(current.getUniqueValue(), "grounds");' })
+Acl({ $id: Now.ID['cpor-amend-16c1-date-write'], type: 'record', table: 'x_au_nswp_cicsm_cpor', field: 'inspection_16c1_date', operation: 'write', adminOverrides: false, script: 'answer = new CporReviewRuntime().canAmendField(current.getUniqueValue(), "inspection_16c1_date");' })
+Acl({ $id: Now.ID['cpor-amend-16c1-event-write'], type: 'record', table: 'x_au_nswp_cicsm_cpor', field: 'inspection_16c1_event_number', operation: 'write', adminOverrides: false, script: 'answer = new CporReviewRuntime().canAmendField(current.getUniqueValue(), "inspection_16c1_event_number");' })
+Acl({ $id: Now.ID['cpor-amend-16c2-date-write'], type: 'record', table: 'x_au_nswp_cicsm_cpor', field: 'inspection_16c2_date', operation: 'write', adminOverrides: false, script: 'answer = new CporReviewRuntime().canAmendField(current.getUniqueValue(), "inspection_16c2_date");' })
+Acl({ $id: Now.ID['cpor-amend-16c2-event-write'], type: 'record', table: 'x_au_nswp_cicsm_cpor', field: 'inspection_16c2_event_number', operation: 'write', adminOverrides: false, script: 'answer = new CporReviewRuntime().canAmendField(current.getUniqueValue(), "inspection_16c2_event_number");' })
+Acl({ $id: Now.ID['cpor-amend-year-write'], type: 'record', table: 'x_au_nswp_cicsm_cpor', field: 'cpor_application_year', operation: 'write', adminOverrides: false, script: 'answer = new CporReviewRuntime().canAmendField(current.getUniqueValue(), "cpor_application_year");' })
 Acl({ $id: Now.ID['cpor-case-delete'], type: 'record', table: 'x_au_nswp_cicsm_cpor', operation: 'delete', decisionType: 'deny', adminOverrides: false, script: 'answer = false;' })
 Acl({ $id: Now.ID['compliance-activity-create'], type: 'record', table: 'x_au_nswp_cicsm_activity', operation: 'create', decisionType: 'deny', adminOverrides: false, script: 'answer = false;' })
 Acl({ $id: Now.ID['compliance-activity-write'], type: 'record', table: 'x_au_nswp_cicsm_activity', operation: 'write', decisionType: 'deny', adminOverrides: false, script: 'answer = false;' })

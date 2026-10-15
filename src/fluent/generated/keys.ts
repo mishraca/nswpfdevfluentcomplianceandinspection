@@ -50,6 +50,54 @@ declare global {
                         table: 'sc_cat_item_producer'
                         id: '1b80a9541b1d4b29a3593ec281fccd02'
                     }
+                    'cpor-amend-16c1-date-write': {
+                        table: 'sys_security_acl'
+                        id: '02f2f779a4ba4479b5d919171d83af18'
+                    }
+                    'cpor-amend-16c1-event-write': {
+                        table: 'sys_security_acl'
+                        id: '9cdee9b864e847c792f67ae88dfe99a8'
+                    }
+                    'cpor-amend-16c2-date-write': {
+                        table: 'sys_security_acl'
+                        id: 'db5b4a51a09c41a89b8722eba24fb154'
+                    }
+                    'cpor-amend-16c2-event-write': {
+                        table: 'sys_security_acl'
+                        id: '96cdb11bf52c46ffb091858d4bf4cd19'
+                    }
+                    'cpor-amend-address-write': {
+                        table: 'sys_security_acl'
+                        id: 'b2260f4fbc8f44f885931259a21931c2'
+                    }
+                    'cpor-amend-birth-write': {
+                        table: 'sys_security_acl'
+                        id: '4e4da8c4244b45f9819c356ba457e43e'
+                    }
+                    'cpor-amend-cni-write': {
+                        table: 'sys_security_acl'
+                        id: '001751e90238477199f387dc21e73dca'
+                    }
+                    'cpor-amend-contact-write': {
+                        table: 'sys_security_acl'
+                        id: '3b238ce20c4e4c6b9a7d329b4dc0cb87'
+                    }
+                    'cpor-amend-cpr-write': {
+                        table: 'sys_security_acl'
+                        id: 'a21a42fa135d49b7a1b143dc19e91d24'
+                    }
+                    'cpor-amend-grounds-write': {
+                        table: 'sys_security_acl'
+                        id: 'c8e0501c9b834f77b58c5be0a9d03916'
+                    }
+                    'cpor-amend-name-write': {
+                        table: 'sys_security_acl'
+                        id: 'a6dde4e91f07463b929cd2a69cfe6755'
+                    }
+                    'cpor-amend-year-write': {
+                        table: 'sys_security_acl'
+                        id: '5d005a176757426f9d1cae16cd3a92bb'
+                    }
                     'cpor-amendment-rule-create': {
                         table: 'sys_security_acl'
                         id: '09a918b418214f0798f9488cbb835742'
@@ -77,6 +125,10 @@ declare global {
                     'cpor-case-delete': {
                         table: 'sys_security_acl'
                         id: '02a9c86f432944369477292e6c8afa43'
+                    }
+                    'cpor-case-field-write-default-deny': {
+                        table: 'sys_security_acl'
+                        id: '42236a9b564447da8cacd14fc7d1ae2f'
                     }
                     'cpor-case-position-read': {
                         table: 'sys_security_acl'
@@ -221,6 +273,10 @@ declare global {
                     'position-assignment-refresh-cursor': {
                         table: 'sys_properties'
                         id: '57c755452d5a4fcfbc58b71cac2790f0'
+                    }
+                    'protect-cpor-amendment-fields': {
+                        table: 'sys_script'
+                        id: 'fb6e9426a2ac442991047030d790287d'
                     }
                     'rank-create': {
                         table: 'sys_security_acl'

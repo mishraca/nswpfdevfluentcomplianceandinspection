@@ -311,6 +311,11 @@ CporReviewRuntime.prototype = {
         return !!this._amendmentContext(caseId, 'case.amend');
     },
 
+    canAmendField: function (caseId, field) {
+        var context = this._amendmentContext(caseId, 'case.amend');
+        return !!context && context.fields.indexOf(String(field || '')) >= 0;
+    },
+
     amendmentContext: function (caseId) {
         var context = this._amendmentContext(caseId, 'case.amend');
         if (!context) throw 'This application is not available for amendment.';
