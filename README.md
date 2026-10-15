@@ -43,8 +43,8 @@ amendment and resubmission operations act on the same CPOR case and review
 activity; they do not create a revision record or draft case. A stage setting
 and CPOR amendment rule select which submitted fields may change. The server
 also enforces a fixed ceiling of CPOR application fields and checks the
-actual submitter through Core case access policy. Field auditing records saved
-changes. The guarded client-callable methods are available for the native
+actual submitter through Core case access policy. Case field auditing is
+configured to record saved changes. Guarded client-callable methods are defined for the native
 officer interface, which still needs to be connected and checked in the police
 instance.
 
