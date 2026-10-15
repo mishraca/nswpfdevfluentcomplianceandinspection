@@ -16,15 +16,8 @@
         !activeRecord('cmn_department', department) || !activeRecord('sys_user', manager)) {
         throw 'Select active officers, a Manager and a department.';
     }
-    var profile = new GlideRecord('sn_hr_core_profile');
-    profile.addQuery('user', manager);
-    profile.setLimit(2);
-    profile.query();
-    if (!profile.next()) throw 'The selected Manager has no HR Profile.';
-    var hda = profile.getValue('u_hda_position');
-    var permanent = profile.getValue('u_permanent_position');
-    var managerPosition = hda || permanent;
-    if (profile.next() || !activeRecord('sn_hr_core_sap_position', managerPosition)) {
+    var managerPosition = new CporPositionAuthority().positionFor(manager);
+    if (!managerPosition) {
         throw 'The selected Manager has no valid SAP HDA Position or SAP Position.';
     }
     var service = new GlideRecord('x_au_nswp_pcm_service');

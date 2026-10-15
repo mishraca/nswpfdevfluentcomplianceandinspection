@@ -1,5 +1,5 @@
 import {
-    Acl, BusinessRule, DateColumn, Form, IntegerColumn, List, MultiLineTextColumn,
+    Acl, BusinessRule, ChoiceColumn, DateColumn, Form, IntegerColumn, List, MultiLineTextColumn,
     ReferenceColumn, StringColumn, Table, default_view,
 } from '@servicenow/sdk/core'
 
@@ -43,6 +43,26 @@ export const x_au_nswp_cicsm_cpor = Table({
     },
 })
 
+export const x_au_nswp_cicsm_activity = Table({
+    name: 'x_au_nswp_cicsm_activity', label: 'Compliance case activity',
+    extends: 'x_au_nswp_pcm_activity' as any, display: 'number',
+    accessibleFrom: 'public', callerAccess: 'restricted',
+    actions: { read: true, create: false, update: false, delete: false },
+    allowClientScripts: false, allowNewFields: false, allowUiActions: false,
+    allowWebServiceAccess: false, audit: true,
+    schema: {
+        responsible_position: ReferenceColumn({ label: 'Responsible SAP position',
+            referenceTable: 'sn_hr_core_sap_position', mandatory: true, cascadeRule: 'restrict' }),
+        review_outcome: ChoiceColumn({ label: 'Review outcome', choices: {
+            support: 'Supported', decline: 'Not supported',
+            request_amendment: 'Amendments requested', approve: 'Approved', reject: 'Rejected',
+        } }),
+        review_comments: MultiLineTextColumn({ label: 'Review comments', maxLength: 4000 }),
+        nominated_superintendent: ReferenceColumn({ label: 'Nominated Superintendent',
+            referenceTable: 'sys_user', cascadeRule: 'restrict' }),
+    },
+})
+
 BusinessRule({
     $id: Now.ID['validate-cpor-application-fields'],
     name: 'Validate CPOR application fields', table: 'x_au_nswp_cicsm_cpor',
@@ -62,6 +82,46 @@ if (!/^[0-9]{8,20}$/.test(contact) || !/^\\d{4}$/.test(year) ||
 }`,
 })
 
+BusinessRule({
+    $id: Now.ID['create-cpor-first-activity'],
+    name: 'Create first CPOR review activity', table: 'x_au_nswp_cicsm_cpor',
+    when: 'after', action: ['insert'], order: 100, active: true,
+    script: `var service = current.service.getRefRecord();
+if (!service.isValidRecord() || service.getValue('active') != '1' ||
+    service.getValue('fulfilment_mode') != 'activities') {
+    throw 'The CPOR service is not ready for activity fulfilment.';
+}
+var stage = new GlideRecord('x_au_nswp_pcm_stage');
+stage.addQuery('process', service.getValue('process'));
+stage.addQuery('active', true);
+stage.orderBy('sequence');
+stage.setLimit(1);
+stage.query();
+if (!stage.next() || stage.getValue('purpose') != 'support') {
+    throw 'The first CPOR review stage must be an active support stage.';
+}
+var managerId = current.getValue('manager');
+var positionId = current.getValue('manager_position_at_submission');
+if (!positionId || new CporPositionAuthority().positionFor(managerId) != positionId) {
+    throw 'Manager position authority changed before the review activity was created.';
+}
+var existing = new GlideRecord('x_au_nswp_cicsm_activity');
+existing.addQuery('case', current.getUniqueValue());
+existing.addQuery('stage', stage.getUniqueValue());
+existing.setLimit(1);
+existing.query();
+if (existing.next()) throw 'The first CPOR review activity already exists.';
+var review = new GlideRecord('x_au_nswp_cicsm_activity');
+review.initialize();
+review.setValue('case', current.getUniqueValue());
+review.setValue('stage', stage.getUniqueValue());
+review.setValue('responsible_position', positionId);
+review.setValue('assigned_to', managerId);
+review.setValue('activity_status', 'ready');
+review.setValue('short_description', stage.getValue('name'));
+if (!review.insert()) throw 'The first CPOR review activity could not be created.';`,
+})
+
 // No ordinary direct create, write or delete path is opened by this table.
 Acl({ $id: Now.ID['compliance-case-create'], type: 'record', table: 'x_au_nswp_cicsm_case', operation: 'create', decisionType: 'deny', adminOverrides: false, script: 'answer = false;' })
 Acl({ $id: Now.ID['compliance-case-write'], type: 'record', table: 'x_au_nswp_cicsm_case', operation: 'write', decisionType: 'deny', adminOverrides: false, script: 'answer = false;' })
@@ -69,11 +129,16 @@ Acl({ $id: Now.ID['compliance-case-delete'], type: 'record', table: 'x_au_nswp_c
 Acl({ $id: Now.ID['cpor-case-create'], type: 'record', table: 'x_au_nswp_cicsm_cpor', operation: 'create', decisionType: 'deny', adminOverrides: false, script: 'answer = false;' })
 Acl({ $id: Now.ID['cpor-case-write'], type: 'record', table: 'x_au_nswp_cicsm_cpor', operation: 'write', decisionType: 'deny', adminOverrides: false, script: 'answer = false;' })
 Acl({ $id: Now.ID['cpor-case-delete'], type: 'record', table: 'x_au_nswp_cicsm_cpor', operation: 'delete', decisionType: 'deny', adminOverrides: false, script: 'answer = false;' })
+Acl({ $id: Now.ID['compliance-activity-create'], type: 'record', table: 'x_au_nswp_cicsm_activity', operation: 'create', decisionType: 'deny', adminOverrides: false, script: 'answer = false;' })
+Acl({ $id: Now.ID['compliance-activity-write'], type: 'record', table: 'x_au_nswp_cicsm_activity', operation: 'write', decisionType: 'deny', adminOverrides: false, script: 'answer = false;' })
+Acl({ $id: Now.ID['compliance-activity-delete'], type: 'record', table: 'x_au_nswp_cicsm_activity', operation: 'delete', decisionType: 'deny', adminOverrides: false, script: 'answer = false;' })
 
 List({ table: 'x_au_nswp_cicsm_case', view: default_view,
     columns: ['number', 'short_description', 'service', 'lifecycle', 'requester', 'selected_department', 'sys_updated_on'] })
 List({ table: 'x_au_nswp_cicsm_cpor', view: default_view,
     columns: ['number', 'short_description', 'lifecycle', 'requester', 'selected_department', 'manager', 'sys_updated_on'] })
+List({ table: 'x_au_nswp_cicsm_activity', view: default_view,
+    columns: ['number', 'short_description', 'case', 'stage', 'activity_status', 'assigned_to', 'responsible_position'] })
 
 Form({ table: 'x_au_nswp_cicsm_case', view: default_view, sections: [
     { caption: 'Case overview', content: [
@@ -117,5 +182,19 @@ Form({ table: 'x_au_nswp_cicsm_cpor', view: default_view, sections: [
             { type: 'table_field', field: 'premises_address' },
             { type: 'table_field', field: 'grounds' },
         ] },
+    ] },
+] })
+
+Form({ table: 'x_au_nswp_cicsm_activity', view: default_view, sections: [
+    { caption: 'Review activity', content: [
+        { layout: 'two-column', leftElements: [
+            { type: 'table_field', field: 'number' }, { type: 'table_field', field: 'case' },
+            { type: 'table_field', field: 'stage' }, { type: 'table_field', field: 'activity_status' },
+        ], rightElements: [
+            { type: 'table_field', field: 'assigned_to' }, { type: 'table_field', field: 'responsible_position' },
+            { type: 'table_field', field: 'review_outcome' },
+            { type: 'table_field', field: 'nominated_superintendent' },
+        ] },
+        { layout: 'one-column', elements: [{ type: 'table_field', field: 'review_comments' }] },
     ] },
 ] })

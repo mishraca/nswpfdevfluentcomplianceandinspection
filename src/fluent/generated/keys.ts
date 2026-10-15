@@ -9,6 +9,18 @@ declare global {
                         table: 'sys_module'
                         id: 'abcd555a51ee4efa94c3de427eb13630'
                     }
+                    'compliance-activity-create': {
+                        table: 'sys_security_acl'
+                        id: '5c67eb84e2bc4ce1866dbb0f20b1b76c'
+                    }
+                    'compliance-activity-delete': {
+                        table: 'sys_security_acl'
+                        id: '3c01ffc7bae5405e9885412bd6b83ed2'
+                    }
+                    'compliance-activity-write': {
+                        table: 'sys_security_acl'
+                        id: '3291789ff7a44674b8b2d44a177789b8'
+                    }
                     'compliance-case-create': {
                         table: 'sys_security_acl'
                         id: 'ab0433b623ef4a3fac66a436ad319d40'
@@ -54,6 +66,10 @@ declare global {
                         table: 'sys_security_acl'
                         id: '4c681b07a2654410b2dddd06ab68230f'
                     }
+                    'cpor-position-authority': {
+                        table: 'sys_script_include'
+                        id: 'f6ef1934b25e4c2a980fd145c662c9d6'
+                    }
                     'cpor-process-cancelled': {
                         table: 'sys_process_flow'
                         id: '1fd3728d335f4de5b2bb657bca486e38'
@@ -73,6 +89,10 @@ declare global {
                     'cpor-process-new': {
                         table: 'sys_process_flow'
                         id: '0624d41a131c4150b6490d388ffcec1e'
+                    }
+                    'create-cpor-first-activity': {
+                        table: 'sys_script'
+                        id: 'a2392c9ff8f4413c8ee6879d8d1f1a55'
                     }
                     'menu-compliance-cases': {
                         table: 'sys_app_module'
@@ -94,6 +114,10 @@ declare global {
                         table: 'sys_module'
                         id: '9b1e42c560994ba687fdb25334f01ef2'
                     }
+                    'src_server_cpor-position-authority_server_js': {
+                        table: 'sys_module'
+                        id: '970a1d848865475e884edb3e5296677a'
+                    }
                     'src_server_cpor-producer_server_js': {
                         table: 'sys_module'
                         id: '766490914a2940b5bc6f6dda3e7c8d8b'
@@ -108,6 +132,14 @@ declare global {
                     }
                 }
                 composite: [
+                    {
+                        table: 'sys_choice_set'
+                        id: '000d58da5aa44c43b7fc1bc8019aee6d'
+                        key: {
+                            name: 'x_au_nswp_cicsm_activity'
+                            element: 'review_outcome'
+                        }
+                    },
                     {
                         table: 'item_option_new'
                         id: '050bbd289ac14a4c9ba3f707a523728c'
@@ -171,6 +203,15 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_documentation'
+                        id: '103fc7ad5e0942a3ac252f602d33b381'
+                        key: {
+                            name: 'x_au_nswp_cicsm_activity'
+                            element: 'responsible_position'
+                            language: 'en'
+                        }
+                    },
+                    {
                         table: 'sys_dictionary'
                         id: '1104d21f918a4bc5bda169cd1e26abc4'
                         key: {
@@ -183,6 +224,29 @@ declare global {
                         id: '117881adc48f4e009c14f22a48db5238'
                         key: {
                             name: 'x_au_nswp_cicsm_case'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_list_element'
+                        id: '14b242e290154ff2a69cf4c768c1febe'
+                        key: {
+                            list_id: {
+                                id: 'ae60182be4b44ed1ab75f2284808377b'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_activity'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                    element: 'NULL'
+                                    relationship: 'NULL'
+                                    parent: 'NULL'
+                                }
+                            }
+                            element: 'stage'
                         }
                     },
                     {
@@ -239,6 +303,29 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_ui_list_element'
+                        id: '1afe557c7eed413492fbeb8c9cfece54'
+                        key: {
+                            list_id: {
+                                id: 'ae60182be4b44ed1ab75f2284808377b'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_activity'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                    element: 'NULL'
+                                    relationship: 'NULL'
+                                    parent: 'NULL'
+                                }
+                            }
+                            element: 'activity_status'
+                        }
+                    },
+                    {
                         table: 'sys_ui_element'
                         id: '1b78b679a55248d2bd3dbae9f5d388d9'
                         deleted: true
@@ -262,6 +349,50 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_ui_element'
+                        id: '1d2bf4368ca94efb8283826e09d33d38'
+                        key: {
+                            sys_ui_section: {
+                                id: '2e1b63ee4aca4e2881e8b33a635f2dcb'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_activity'
+                                    caption: 'Review activity'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'nominated_superintendent'
+                            position: '9'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: '1d6bf85ba1c74703b1c49100d9219a30'
+                        key: {
+                            sys_ui_section: {
+                                id: '2e1b63ee4aca4e2881e8b33a635f2dcb'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_activity'
+                                    caption: 'Review activity'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'review_outcome'
+                            position: '8'
+                        }
+                    },
+                    {
                         table: 'sys_documentation'
                         id: '1db3e879c1444b0ba09d1abf71afab0d'
                         key: {
@@ -277,6 +408,35 @@ declare global {
                             cat_item: '1b80a9541b1d4b29a3593ec281fccd02'
                             variable_set: 'NULL'
                             name: 'inspection16c2Event'
+                        }
+                    },
+                    {
+                        table: 'sys_choice'
+                        id: '1eef2241f83e4128933a557630b12b45'
+                        key: {
+                            name: 'x_au_nswp_cicsm_activity'
+                            element: 'review_outcome'
+                            value: 'request_amendment'
+                            language: 'en'
+                            dependent_value: 'NULL'
+                        }
+                    },
+                    {
+                        table: 'sys_choice'
+                        id: '20210d955ff54d49add3b59e4123d691'
+                        key: {
+                            name: 'x_au_nswp_cicsm_activity'
+                            element: 'review_outcome'
+                            value: 'decline'
+                            language: 'en'
+                            dependent_value: 'NULL'
+                        }
+                    },
+                    {
+                        table: 'ua_table_licensing_config'
+                        id: '20b7bbc8e69241839aae3f8479e201c3'
+                        key: {
+                            name: 'x_au_nswp_cicsm_activity'
                         }
                     },
                     {
@@ -455,12 +615,49 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_ui_section'
+                        id: '2e1b63ee4aca4e2881e8b33a635f2dcb'
+                        key: {
+                            name: 'x_au_nswp_cicsm_activity'
+                            caption: 'Review activity'
+                            view: {
+                                id: 'Default view'
+                                key: {
+                                    name: 'NULL'
+                                }
+                            }
+                            sys_domain: 'global'
+                        }
+                    },
+                    {
                         table: 'sys_documentation'
                         id: '2fa6f11ac9164199a2653c52d198444c'
                         key: {
                             name: 'x_au_nswp_cicsm_cpor'
                             element: 'registerable_person_name'
                             language: 'en'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: '324b2a097a464488b995fbc8d04aa6ae'
+                        key: {
+                            sys_ui_section: {
+                                id: '2e1b63ee4aca4e2881e8b33a635f2dcb'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_activity'
+                                    caption: 'Review activity'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'review_comments'
+                            position: '11'
                         }
                     },
                     {
@@ -561,6 +758,43 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_ui_list_element'
+                        id: '3e6851f1f0e04affbc4de07eb9364849'
+                        key: {
+                            list_id: {
+                                id: 'ae60182be4b44ed1ab75f2284808377b'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_activity'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                    element: 'NULL'
+                                    relationship: 'NULL'
+                                    parent: 'NULL'
+                                }
+                            }
+                            element: 'responsible_position'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_form'
+                        id: '3ed1caebaa9d400a8a341a088f94f610'
+                        key: {
+                            name: 'x_au_nswp_cicsm_activity'
+                            view: {
+                                id: 'Default view'
+                                key: {
+                                    name: 'NULL'
+                                }
+                            }
+                            sys_domain: 'global'
+                        }
+                    },
+                    {
                         table: 'sys_documentation'
                         id: '40704778d6d54272bb5676aae66221b5'
                         key: {
@@ -605,6 +839,28 @@ declare global {
                         key: {
                             sc_cat_item: '1b80a9541b1d4b29a3593ec281fccd02'
                             sc_catalog: '02d32ada44f9485297e36bde9defd9bb'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: '46ae3a0b12994a08aba54a4a1c49cf41'
+                        key: {
+                            sys_ui_section: {
+                                id: '2e1b63ee4aca4e2881e8b33a635f2dcb'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_activity'
+                                    caption: 'Review activity'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: '.end_split'
+                            position: '10'
                         }
                     },
                     {
@@ -662,6 +918,50 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_ui_element'
+                        id: '4ccb7943b6d14aafba9e2ed610fca45c'
+                        key: {
+                            sys_ui_section: {
+                                id: '2e1b63ee4aca4e2881e8b33a635f2dcb'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_activity'
+                                    caption: 'Review activity'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'stage'
+                            position: '3'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: '4edfbe8a461149228a38e9a7cad28d13'
+                        key: {
+                            sys_ui_section: {
+                                id: '2e1b63ee4aca4e2881e8b33a635f2dcb'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_activity'
+                                    caption: 'Review activity'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'assigned_to'
+                            position: '6'
+                        }
+                    },
+                    {
                         table: 'item_option_new'
                         id: '52029b7f72ed4169914fd3686f5a046d'
                         key: {
@@ -713,6 +1013,29 @@ declare global {
                             }
                             element: 'inspection_16c2_date'
                             position: '11'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_list_element'
+                        id: '5ce2c44fcb574e779c69ff5c443c5a1a'
+                        key: {
+                            list_id: {
+                                id: 'ae60182be4b44ed1ab75f2284808377b'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_activity'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                    element: 'NULL'
+                                    relationship: 'NULL'
+                                    parent: 'NULL'
+                                }
+                            }
+                            element: 'short_description'
                         }
                     },
                     {
@@ -777,6 +1100,24 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_documentation'
+                        id: '65b3dbc05ba546a88075547b3915edb0'
+                        key: {
+                            name: 'x_au_nswp_cicsm_activity'
+                            element: 'nominated_superintendent'
+                            language: 'en'
+                        }
+                    },
+                    {
+                        table: 'sys_documentation'
+                        id: '65eafffa4f094032a93c4f1195ec818a'
+                        key: {
+                            name: 'x_au_nswp_cicsm_activity'
+                            element: 'NULL'
+                            language: 'en'
+                        }
+                    },
+                    {
                         table: 'item_option_new'
                         id: '6634580e36fe4402ae341e0b61759292'
                         key: {
@@ -805,6 +1146,29 @@ declare global {
                             }
                             element: 'cni'
                             position: '3'
+                        }
+                    },
+                    {
+                        table: 'sys_db_object'
+                        id: '69e399b48ab24d3891b2c7acc65266cf'
+                        key: {
+                            name: 'x_au_nswp_cicsm_activity'
+                        }
+                    },
+                    {
+                        table: 'sys_dictionary'
+                        id: '6b291cfaa6884161ae57bbca44a6faa5'
+                        key: {
+                            name: 'x_au_nswp_cicsm_activity'
+                            element: 'NULL'
+                        }
+                    },
+                    {
+                        table: 'sys_dictionary'
+                        id: '6b3aa45805304932916d677fa78ba5eb'
+                        key: {
+                            name: 'x_au_nswp_cicsm_activity'
+                            element: 'review_outcome'
                         }
                     },
                     {
@@ -855,11 +1219,44 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_choice'
+                        id: '72a1a04e494f434b95ac8d5f6b96b2ea'
+                        key: {
+                            name: 'x_au_nswp_cicsm_activity'
+                            element: 'review_outcome'
+                            value: 'support'
+                            language: 'en'
+                            dependent_value: 'NULL'
+                        }
+                    },
+                    {
                         table: 'sys_dictionary'
                         id: '731df969d80f488eacb4ef73bd99f2f4'
                         key: {
                             name: 'x_au_nswp_cicsm_cpor'
                             element: 'external_contact_number'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: '737c43219dbf455a9c33bd8311322e60'
+                        key: {
+                            sys_ui_section: {
+                                id: '2e1b63ee4aca4e2881e8b33a635f2dcb'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_activity'
+                                    caption: 'Review activity'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: '.split'
+                            position: '5'
                         }
                     },
                     {
@@ -941,6 +1338,17 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_choice'
+                        id: '78aa0686f28a4caca1c8605954ec27b4'
+                        key: {
+                            name: 'x_au_nswp_cicsm_activity'
+                            element: 'review_outcome'
+                            value: 'approve'
+                            language: 'en'
+                            dependent_value: 'NULL'
+                        }
+                    },
+                    {
                         table: 'sys_dictionary'
                         id: '791a1090096e4580bc750a177045a4e5'
                         key: {
@@ -990,6 +1398,37 @@ declare global {
                             name: 'x_au_nswp_cicsm_cpor'
                             element: 'cpor_application_year'
                             language: 'en'
+                        }
+                    },
+                    {
+                        table: 'sys_dictionary'
+                        id: '83c998765c5b4a3f8fa71a5fa642774c'
+                        key: {
+                            name: 'x_au_nswp_cicsm_activity'
+                            element: 'review_comments'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_list_element'
+                        id: '873b56f4b1f241efa87fc4ed3c0614a2'
+                        key: {
+                            list_id: {
+                                id: 'ae60182be4b44ed1ab75f2284808377b'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_activity'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                    element: 'NULL'
+                                    relationship: 'NULL'
+                                    parent: 'NULL'
+                                }
+                            }
+                            element: 'case'
                         }
                     },
                     {
@@ -1131,6 +1570,28 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_ui_element'
+                        id: '9c95576cb091432ca1ef0bcef442be86'
+                        key: {
+                            sys_ui_section: {
+                                id: '2e1b63ee4aca4e2881e8b33a635f2dcb'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_activity'
+                                    caption: 'Review activity'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'responsible_position'
+                            position: '7'
+                        }
+                    },
+                    {
                         table: 'sys_documentation'
                         id: '9e04bb30c6da4aed8d1e02e39e85074c'
                         key: {
@@ -1216,6 +1677,14 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_dictionary'
+                        id: 'a273f04d88af462bb5ed536a81773140'
+                        key: {
+                            name: 'x_au_nswp_cicsm_activity'
+                            element: 'responsible_position'
+                        }
+                    },
+                    {
                         table: 'sys_ui_section'
                         id: 'a2ba68b2dd714ea783fe33c666b6b673'
                         key: {
@@ -1253,6 +1722,39 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_ui_form_section'
+                        id: 'a49f79b8a8614444a5bc6c917511a65d'
+                        key: {
+                            sys_ui_form: {
+                                id: '3ed1caebaa9d400a8a341a088f94f610'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_activity'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            sys_ui_section: {
+                                id: '2e1b63ee4aca4e2881e8b33a635f2dcb'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_activity'
+                                    caption: 'Review activity'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                        }
+                    },
+                    {
                         table: 'sys_ui_element'
                         id: 'a6a6aaa260f441c38b0eca52c238a412'
                         key: {
@@ -1272,6 +1774,15 @@ declare global {
                             }
                             element: 'secondary_requester'
                             position: '8'
+                        }
+                    },
+                    {
+                        table: 'sys_documentation'
+                        id: 'a6cf22ca27394c4ebb12f90efe760d79'
+                        key: {
+                            name: 'x_au_nswp_cicsm_activity'
+                            element: 'review_outcome'
+                            language: 'en'
                         }
                     },
                     {
@@ -1364,6 +1875,46 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_ui_list'
+                        id: 'ae60182be4b44ed1ab75f2284808377b'
+                        key: {
+                            name: 'x_au_nswp_cicsm_activity'
+                            view: {
+                                id: 'Default view'
+                                key: {
+                                    name: 'NULL'
+                                }
+                            }
+                            sys_domain: 'global'
+                            element: 'NULL'
+                            relationship: 'NULL'
+                            parent: 'NULL'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_list_element'
+                        id: 'b04bb876236248aaa552ba0965ebfadc'
+                        key: {
+                            list_id: {
+                                id: 'ae60182be4b44ed1ab75f2284808377b'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_activity'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                    element: 'NULL'
+                                    relationship: 'NULL'
+                                    parent: 'NULL'
+                                }
+                            }
+                            element: 'number'
+                        }
+                    },
+                    {
                         table: 'sys_dictionary'
                         id: 'b32c9a2277d845a4bf4f5252e9c94e35'
                         key: {
@@ -1377,6 +1928,28 @@ declare global {
                         key: {
                             name: 'x_au_nswp_cicsm_cpor'
                             element: 'cpr_case_number'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: 'b5f9bf04a950415cb7d741ca690e928a'
+                        key: {
+                            sys_ui_section: {
+                                id: '2e1b63ee4aca4e2881e8b33a635f2dcb'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_activity'
+                                    caption: 'Review activity'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: '.begin_split'
+                            position: '0'
                         }
                     },
                     {
@@ -1477,6 +2050,15 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_documentation'
+                        id: 'be6aa9f8ceb24abbb0ecff69a03dabba'
+                        key: {
+                            name: 'x_au_nswp_cicsm_activity'
+                            element: 'review_comments'
+                            language: 'en'
+                        }
+                    },
+                    {
                         table: 'sys_ui_list_element'
                         id: 'bf41d7ec732e4725bb3358dab7eb35ff'
                         key: {
@@ -1535,6 +2117,28 @@ declare global {
                         key: {
                             name: 'x_au_nswp_cicsm_cpor'
                             element: 'registerable_person_name'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: 'c58a5598a85846f2b4486bebecb32922'
+                        key: {
+                            sys_ui_section: {
+                                id: '2e1b63ee4aca4e2881e8b33a635f2dcb'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_activity'
+                                    caption: 'Review activity'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'activity_status'
+                            position: '4'
                         }
                     },
                     {
@@ -1712,6 +2316,28 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_ui_element'
+                        id: 'd3fe56f50db34417beecf4133b3c8fb6'
+                        key: {
+                            sys_ui_section: {
+                                id: '2e1b63ee4aca4e2881e8b33a635f2dcb'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_activity'
+                                    caption: 'Review activity'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'case'
+                            position: '2'
+                        }
+                    },
+                    {
                         table: 'sys_ui_list_element'
                         id: 'd5dfb4c06b594f669ddab1e9f3527652'
                         key: {
@@ -1766,6 +2392,14 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_dictionary'
+                        id: 'da87e42d4e114be9a2126f54ca61cafa'
+                        key: {
+                            name: 'x_au_nswp_cicsm_activity'
+                            element: 'nominated_superintendent'
+                        }
+                    },
+                    {
                         table: 'sys_ui_form_section'
                         id: 'db29fab197b541558d29ef1db41bd187'
                         key: {
@@ -1796,6 +2430,29 @@ declare global {
                                     sys_domain: 'global'
                                 }
                             }
+                        }
+                    },
+                    {
+                        table: 'sys_ui_list_element'
+                        id: 'dc4e0554a5334de48d55a9df24c0574c'
+                        key: {
+                            list_id: {
+                                id: 'ae60182be4b44ed1ab75f2284808377b'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_activity'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                    element: 'NULL'
+                                    relationship: 'NULL'
+                                    parent: 'NULL'
+                                }
+                            }
+                            element: 'assigned_to'
                         }
                     },
                     {
@@ -2030,6 +2687,17 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_choice'
+                        id: 'edccf2e0e10b49e292f465634ff2e929'
+                        key: {
+                            name: 'x_au_nswp_cicsm_activity'
+                            element: 'review_outcome'
+                            value: 'reject'
+                            language: 'en'
+                            dependent_value: 'NULL'
+                        }
+                    },
+                    {
                         table: 'sys_ui_element'
                         id: 'f1167f6920db49fb8a53793dfa98a544'
                         key: {
@@ -2111,6 +2779,28 @@ declare global {
                                 }
                             }
                             element: 'sys_updated_on'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: 'f741bf70a1724eb0b58983cec6f3127a'
+                        key: {
+                            sys_ui_section: {
+                                id: '2e1b63ee4aca4e2881e8b33a635f2dcb'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_activity'
+                                    caption: 'Review activity'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'number'
+                            position: '1'
                         }
                     },
                     {

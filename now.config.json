@@ -5,7 +5,7 @@
     "tsconfigPath": "./src/server/tsconfig.json",
     "dependencies": {
         "x_au_nswp_pcm": {
-            "tables": ["x_au_nswp_pcm_case"]
+            "tables": ["x_au_nswp_pcm_case", "x_au_nswp_pcm_activity"]
         }
     }
 }

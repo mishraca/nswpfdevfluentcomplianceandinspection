@@ -9,7 +9,7 @@ const relatedLists = Record({
 Record({
     $id: Now.ID['cpor-case-activities-related-list'],
     table: 'sys_ui_related_list_entry',
-    data: { list_id: relatedLists, related_list: 'x_au_nswp_pcm_activity.case', position: 0 },
+    data: { list_id: relatedLists, related_list: 'x_au_nswp_cicsm_activity.case', position: 0 },
 })
 
 Record({ $id: Now.ID['cpor-process-new'], table: 'sys_process_flow', data: {

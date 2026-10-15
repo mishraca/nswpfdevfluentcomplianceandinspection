@@ -14,13 +14,17 @@ Profile, and uses SAP HDA Position when present, otherwise SAP Position. It
 records the position at submission; officers do not enter it.
 
 The backend application menu exposes compliance cases, CPOR cases and case
-activities to the shared case worker role. The CPOR case list has a “New CPOR
-application” action that opens the native producer. Staff should create an
+activities to the shared case worker role. The CPOR case list has a "New CPOR
+application" action that opens the native producer. Staff should create an
 application through that action rather than create an incomplete Task record.
+The CPOR form has a case activities related list and a lifecycle Process Flow.
+An after-insert rule uses the service's configured first support stage to
+create a position-bound review activity. The position resolver checks live HR
+Profile values with HDA priority.
 
 This branch is **not ready for installation or operational use**. The Core
-service remains inactive; no first Manager activity, live position handover,
-reviewer decision action or workspace queue has been implemented here.
+service remains inactive; reviewer decision actions, live position handover
+refresh and a workspace queue have not been implemented here.
 Employee Center page, catalog and ticket configuration will be completed on
 the police instance. Cross-scope access and the end-to-end journey require
 native review. A local build only validates SDK

@@ -19,7 +19,7 @@ Record({ $id: Now.ID['menu-cpor-cases'], table: 'sys_app_module', data: {
 } })
 Record({ $id: Now.ID['menu-operational-activities'], table: 'sys_app_module', data: {
     title: 'Case activities', application: menu, link_type: 'LIST',
-    name: 'x_au_nswp_pcm_activity', roles: ['x_au_nswp_pcm.case_worker'], active: true, order: 300,
+    name: 'x_au_nswp_cicsm_activity', roles: ['x_au_nswp_pcm.case_worker'], active: true, order: 300,
 } })
 
 UiAction({
