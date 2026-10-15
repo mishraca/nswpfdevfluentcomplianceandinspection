@@ -1,6 +1,6 @@
 import {
     Acl, BusinessRule, ChoiceColumn, DateColumn, Form, IntegerColumn, List, MultiLineTextColumn,
-    ReferenceColumn, StringColumn, Table, default_view,
+    Record, ReferenceColumn, StringColumn, Table, default_view,
 } from '@servicenow/sdk/core'
 
 // The family table carries shared case behaviour. Specialist leaves inherit
@@ -176,6 +176,10 @@ List({ table: 'x_au_nswp_cicsm_cpor', view: default_view,
 List({ table: 'x_au_nswp_cicsm_activity', view: default_view,
     columns: ['number', 'short_description', 'case', 'stage', 'activity_status', 'assigned_to', 'responsible_position'] })
 
+const cporProcessFlow = Record({ $id: Now.ID['cpor-process-flow-formatter'], table: 'sys_ui_formatter',
+    data: { name: 'Process Flow', type: 'formatter', formatter: 'process_flow.xml',
+        table: 'x_au_nswp_cicsm_cpor', active: true } })
+
 Form({ table: 'x_au_nswp_cicsm_case', view: default_view, sections: [
     { caption: 'Case overview', content: [
         { layout: 'two-column', leftElements: [
@@ -190,6 +194,7 @@ Form({ table: 'x_au_nswp_cicsm_case', view: default_view, sections: [
 
 Form({ table: 'x_au_nswp_cicsm_cpor', view: default_view, sections: [
     { caption: 'Case overview', content: [
+        { layout: 'one-column', elements: [{ type: 'formatter', formatterRef: cporProcessFlow }] },
         { layout: 'two-column', leftElements: [
             { type: 'table_field', field: 'number' }, { type: 'table_field', field: 'short_description' },
             { type: 'table_field', field: 'service' }, { type: 'table_field', field: 'selected_department' },

@@ -110,6 +110,10 @@ declare global {
                         table: 'sys_process_flow'
                         id: 'd93f9ea57b0f4dc4bbc14be559076bd8'
                     }
+                    'cpor-process-flow-formatter': {
+                        table: 'sys_ui_formatter'
+                        id: '165c918733d74bcf8175b18a0972bbd9'
+                    }
                     'cpor-process-in-progress': {
                         table: 'sys_process_flow'
                         id: '323231505bee4cbe9370874580e62c2e'
@@ -117,6 +121,10 @@ declare global {
                     'cpor-process-information': {
                         table: 'sys_process_flow'
                         id: 'cd5b0597b34a406fa052a7ea497ae1f7'
+                    }
+                    'cpor-process-inspection-outcome': {
+                        table: 'sys_process_flow'
+                        id: 'd3ee3aa250c3482b9eca113ce79f7225'
                     }
                     'cpor-process-new': {
                         table: 'sys_process_flow'
@@ -267,6 +275,28 @@ declare global {
                         key: {
                             name: 'x_au_nswp_cicsm_rank'
                             element: 'NULL'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: '05771cad81a642c7af6a1041a4c0fd9c'
+                        key: {
+                            sys_ui_section: {
+                                id: 'acacd807dc954dbdb738af0c9cda9042'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_cpor'
+                                    caption: 'Case overview'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'short_description'
+                            position: '3'
                         }
                     },
                     {
@@ -694,6 +724,7 @@ declare global {
                     {
                         table: 'sys_ui_element'
                         id: '22e19de3dfcd4b4f9fd70eaf1eaef268'
+                        deleted: true
                         key: {
                             sys_ui_section: {
                                 id: 'acacd807dc954dbdb738af0c9cda9042'
@@ -741,6 +772,28 @@ declare global {
                                 }
                             }
                             element: 'short_description'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: '273beea16b52422c9f053c3bb812f338'
+                        key: {
+                            sys_ui_section: {
+                                id: 'acacd807dc954dbdb738af0c9cda9042'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_cpor'
+                                    caption: 'Case overview'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'service'
+                            position: '4'
                         }
                     },
                     {
@@ -1059,6 +1112,7 @@ declare global {
                     {
                         table: 'sys_ui_element'
                         id: '364daf6ae500499b9432511799658e89'
+                        deleted: true
                         key: {
                             sys_ui_section: {
                                 id: 'acacd807dc954dbdb738af0c9cda9042'
@@ -1285,6 +1339,7 @@ declare global {
                     {
                         table: 'sys_ui_element'
                         id: '432349dc2a474f4f93d32344b9f1b142'
+                        deleted: true
                         key: {
                             sys_ui_section: {
                                 id: 'acacd807dc954dbdb738af0c9cda9042'
@@ -1353,6 +1408,28 @@ declare global {
                                 }
                             }
                             element: 'name'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: '4651c4c8da344f97b627fae6fe6959cc'
+                        key: {
+                            sys_ui_section: {
+                                id: 'acacd807dc954dbdb738af0c9cda9042'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_cpor'
+                                    caption: 'Case overview'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'requester'
+                            position: '8'
                         }
                     },
                     {
@@ -1685,6 +1762,7 @@ declare global {
                     {
                         table: 'sys_ui_element'
                         id: '5ce81ac3e036419db886fee8f8117007'
+                        deleted: true
                         key: {
                             sys_ui_section: {
                                 id: 'acacd807dc954dbdb738af0c9cda9042'
@@ -1702,6 +1780,28 @@ declare global {
                             }
                             element: 'short_description'
                             position: '2'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: '5da924248f5c4afc989422e53fcc73f0'
+                        key: {
+                            sys_ui_section: {
+                                id: 'acacd807dc954dbdb738af0c9cda9042'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_cpor'
+                                    caption: 'Case overview'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: '.end_split'
+                            position: '11'
                         }
                     },
                     {
@@ -1963,6 +2063,28 @@ declare global {
                     },
                     {
                         table: 'sys_ui_element'
+                        id: '7001fc21a8784f7abf6b1a77d00b2189'
+                        key: {
+                            sys_ui_section: {
+                                id: 'acacd807dc954dbdb738af0c9cda9042'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_cpor'
+                                    caption: 'Case overview'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'lifecycle'
+                            position: '7'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
                         id: '71678fd1d6864e828f6be80e10d22eb6'
                         key: {
                             sys_ui_section: {
@@ -2094,6 +2216,7 @@ declare global {
                     {
                         table: 'sys_ui_element'
                         id: '748897f22d2a4692956ef260cdaacbc8'
+                        deleted: true
                         key: {
                             sys_ui_section: {
                                 id: 'acacd807dc954dbdb738af0c9cda9042'
@@ -2116,6 +2239,7 @@ declare global {
                     {
                         table: 'sys_ui_element'
                         id: '7501afc67d02440caf3f2fd898bc93f0'
+                        deleted: true
                         key: {
                             sys_ui_section: {
                                 id: 'acacd807dc954dbdb738af0c9cda9042'
@@ -2305,6 +2429,7 @@ declare global {
                     {
                         table: 'sys_ui_element'
                         id: '879f1e5d5124472a9a364d3a15dea4f4'
+                        deleted: true
                         key: {
                             sys_ui_section: {
                                 id: 'acacd807dc954dbdb738af0c9cda9042'
@@ -2518,6 +2643,28 @@ declare global {
                             }
                             element: '.end_split'
                             position: '5'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: '98a3712a2ac3467aa3ebe2c29cb2fd57'
+                        key: {
+                            sys_ui_section: {
+                                id: 'acacd807dc954dbdb738af0c9cda9042'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_cpor'
+                                    caption: 'Case overview'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'secondary_requester'
+                            position: '9'
                         }
                     },
                     {
@@ -2984,6 +3131,28 @@ declare global {
                     },
                     {
                         table: 'sys_ui_element'
+                        id: 'af06ed77f3104d41ab91690553f1152f'
+                        key: {
+                            sys_ui_section: {
+                                id: 'acacd807dc954dbdb738af0c9cda9042'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_cpor'
+                                    caption: 'Case overview'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'submitted_at'
+                            position: '10'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
                         id: 'af0d223019654c19bcc08ee2b7c4d436'
                         key: {
                             sys_ui_section: {
@@ -3087,6 +3256,28 @@ declare global {
                             }
                             element: '.begin_split'
                             position: '0'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: 'b68ef75578af4d2a88e269e75bd1aa54'
+                        key: {
+                            sys_ui_section: {
+                                id: 'acacd807dc954dbdb738af0c9cda9042'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_cpor'
+                                    caption: 'Case overview'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: '.split'
+                            position: '6'
                         }
                     },
                     {
@@ -3250,6 +3441,28 @@ declare global {
                     },
                     {
                         table: 'sys_ui_element'
+                        id: 'c2aaa7c5d4e741c1b49e8ebe1159c73d'
+                        key: {
+                            sys_ui_section: {
+                                id: 'acacd807dc954dbdb738af0c9cda9042'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_cpor'
+                                    caption: 'Case overview'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'number'
+                            position: '2'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
                         id: 'c31d67ed163944478b383606d788beae'
                         key: {
                             sys_ui_section: {
@@ -3308,6 +3521,28 @@ declare global {
                             name: 'x_au_nswp_cicsm_cpor'
                             element: 'charge_laid'
                             language: 'en'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: 'c4d25fd25ed543e4874b0dac722a79b6'
+                        key: {
+                            sys_ui_section: {
+                                id: 'acacd807dc954dbdb738af0c9cda9042'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_cpor'
+                                    caption: 'Case overview'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: '.begin_split'
+                            position: '1'
                         }
                     },
                     {
@@ -3391,6 +3626,7 @@ declare global {
                     {
                         table: 'sys_ui_element'
                         id: 'c92ba9e1695a4af2bef9f64dc659245a'
+                        deleted: true
                         key: {
                             sys_ui_section: {
                                 id: 'acacd807dc954dbdb738af0c9cda9042'
@@ -3426,6 +3662,28 @@ declare global {
                             cat_item: '1b80a9541b1d4b29a3593ec281fccd02'
                             variable_set: 'NULL'
                             name: 'cprCaseNumber'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: 'cd6024e379cc417488f4d24b6440eec7'
+                        key: {
+                            sys_ui_section: {
+                                id: 'acacd807dc954dbdb738af0c9cda9042'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_cpor'
+                                    caption: 'Case overview'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'selected_department'
+                            position: '5'
                         }
                     },
                     {
@@ -3480,6 +3738,7 @@ declare global {
                     {
                         table: 'sys_ui_element'
                         id: 'cfc06bf71f644db2949054dd617af5c3'
+                        deleted: true
                         key: {
                             sys_ui_section: {
                                 id: 'acacd807dc954dbdb738af0c9cda9042'
@@ -4226,6 +4485,7 @@ declare global {
                     {
                         table: 'sys_ui_element'
                         id: 'f8292342bb0543429df614bfd1637808'
+                        deleted: true
                         key: {
                             sys_ui_section: {
                                 id: 'acacd807dc954dbdb738af0c9cda9042'
@@ -4248,6 +4508,7 @@ declare global {
                     {
                         table: 'sys_ui_element'
                         id: 'f8f1ae843cfa45b8aa861266b91385ac'
+                        deleted: true
                         key: {
                             sys_ui_section: {
                                 id: 'acacd807dc954dbdb738af0c9cda9042'
@@ -4343,6 +4604,28 @@ declare global {
                             cat_item: '1b80a9541b1d4b29a3593ec281fccd02'
                             variable_set: 'NULL'
                             name: 'premisesAddress'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: 'fea4fda4f19846c19938133004b03c77'
+                        key: {
+                            sys_ui_section: {
+                                id: 'acacd807dc954dbdb738af0c9cda9042'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_cpor'
+                                    caption: 'Case overview'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'process_flow.xml'
+                            position: '0'
                         }
                     },
                     {

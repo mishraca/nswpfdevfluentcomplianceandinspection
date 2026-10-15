@@ -17,12 +17,16 @@ Record({ $id: Now.ID['cpor-process-new'], table: 'sys_process_flow', data: {
     condition: 'lifecycle=new^EQ', order: 100, active: true,
 } })
 Record({ $id: Now.ID['cpor-process-in-progress'], table: 'sys_process_flow', data: {
-    table: 'x_au_nswp_cicsm_cpor', name: 'Application review', label: 'In review',
-    condition: 'lifecycleINin_progress,awaiting_review^EQ', order: 200, active: true,
+    table: 'x_au_nswp_cicsm_cpor', name: 'Final approval', label: 'Final approval',
+    condition: 'lifecycle=awaiting_review^EQ', order: 200, active: true,
 } })
 Record({ $id: Now.ID['cpor-process-information'], table: 'sys_process_flow', data: {
     table: 'x_au_nswp_cicsm_cpor', name: 'Information requested', label: 'Information requested',
-    condition: 'lifecycle=awaiting_information^EQ', order: 300, active: true,
+    condition: 'lifecycle=awaiting_information^EQ', order: 150, active: true,
+} })
+Record({ $id: Now.ID['cpor-process-inspection-outcome'], table: 'sys_process_flow', data: {
+    table: 'x_au_nswp_cicsm_cpor', name: 'Inspection outcome', label: 'Inspection outcome',
+    condition: 'lifecycle=in_progress^approval_outcome=approved^EQ', order: 300, active: true,
 } })
 Record({ $id: Now.ID['cpor-process-complete'], table: 'sys_process_flow', data: {
     table: 'x_au_nswp_cicsm_cpor', name: 'Application complete', label: 'Complete',
