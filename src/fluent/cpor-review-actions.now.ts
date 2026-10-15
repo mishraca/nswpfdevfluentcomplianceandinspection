@@ -90,6 +90,72 @@ Record({
         item_type: 'action', action: supportFormAction },
 })
 
+const requestAmendment = UiAction({
+    $id: Now.ID['cpor-request-amendments'], table: 'x_au_nswp_cicsm_cpor',
+    name: 'Request amendments', actionName: 'cpor_request_amendments', active: true,
+    showInsert: false, showUpdate: true, roles: ['x_au_nswp_pcm.case_worker'],
+    condition: 'new CporReviewRuntime().canRequestAmendment(current.getUniqueValue())',
+    order: 150, form: true,
+    client: { isClient: true, onClick: 'openCporAmendmentRequest()' },
+    script: 'function openCporAmendmentRequest() { return false; }',
+    workspace: { isConfigurableWorkspace: true, showFormButtonV2: true,
+        clientScriptV2: `function onClick(g_form) {
+    var caseId = g_form.getUniqueValue();
+    var contextRequest = new GlideAjax('x_au_nswp_cicsm.CporReviewAjax');
+    contextRequest.addParam('sysparm_name', 'amendmentRequestContext');
+    contextRequest.addParam('sysparm_case', caseId);
+    contextRequest.getXMLAnswer(function (raw) {
+        var context;
+        try {
+            context = JSON.parse(raw || '{}');
+            if (context.error || !context.activity) throw context.error || 'Review context is unavailable.';
+        } catch (error) {
+            g_form.addErrorMessage(String(error));
+            return;
+        }
+        g_modal.showFields({ title: 'Request amendments', confirmTitle: 'Send request', size: 'md',
+            fields: [{ type: 'textarea', name: 'reason', label: 'What needs to be amended', mandatory: true }],
+        }).then(function (result) {
+            var reason = '';
+            (result.updatedFields || []).forEach(function (field) {
+                if (field.name === 'reason') reason = field.value;
+            });
+            if (!String(reason || '').trim()) {
+                g_form.addErrorMessage('Enter amendment instructions.');
+                return;
+            }
+            var request = new GlideAjax('x_au_nswp_cicsm.CporReviewAjax');
+            request.addParam('sysparm_name', 'requestAmendment');
+            request.addParam('sysparm_case', caseId);
+            request.addParam('sysparm_activity', context.activity);
+            request.addParam('sysparm_reason', reason);
+            request.getXMLAnswer(function (answer) {
+                try {
+                    var response = JSON.parse(answer || '{}');
+                    if (response.error || !response.ok) throw response.error || 'The request was not recorded.';
+                    g_form.addInfoMessage('Amendments requested from the submitter.');
+                    if (typeof g_aw !== 'undefined') {
+                        g_aw.closeRecord();
+                        g_aw.openRecord('x_au_nswp_cicsm_cpor', caseId);
+                    }
+                } catch (error) {
+                    g_form.addErrorMessage(String(error));
+                }
+            });
+        });
+    });
+}`,
+    },
+})
+const requestAmendmentFormAction = Record({ $id: Now.ID['cpor-request-amendments-workspace-action'],
+    table: 'sys_ux_form_action', data: { table: 'x_au_nswp_cicsm_cpor',
+        ui_action: requestAmendment, action_type: 'ui_action', active: true, name: 'Request amendments' } })
+Record({ $id: Now.ID['cpor-request-amendments-workspace-layout'],
+    table: 'sys_ux_form_action_layout_item',
+    data: { table: 'x_au_nswp_cicsm_cpor', name: 'cpor_request_amendments',
+        label: 'Request amendments', color: 'secondary', overflow: false, order: 150,
+        active: true, item_type: 'action', action: requestAmendmentFormAction } })
+
 const approveScript = `function onClick(g_form) {
     var caseId = g_form.getUniqueValue();
     var contextRequest = new GlideAjax('x_au_nswp_cicsm.CporReviewAjax');

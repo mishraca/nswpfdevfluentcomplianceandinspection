@@ -50,6 +50,22 @@ declare global {
                         table: 'sc_cat_item_producer'
                         id: '1b80a9541b1d4b29a3593ec281fccd02'
                     }
+                    'cpor-amendment-rule-create': {
+                        table: 'sys_security_acl'
+                        id: '09a918b418214f0798f9488cbb835742'
+                    }
+                    'cpor-amendment-rule-delete': {
+                        table: 'sys_security_acl'
+                        id: '2ee35751b1aa4ca5b1342c9e90ae3bfe'
+                    }
+                    'cpor-amendment-rule-read': {
+                        table: 'sys_security_acl'
+                        id: '21187bbcd5634d20b2d8e5454c717efd'
+                    }
+                    'cpor-amendment-rule-write': {
+                        table: 'sys_security_acl'
+                        id: '8f524bde4f394ab88bf3e8a7c7c33792'
+                    }
                     'cpor-case-activities-related-list': {
                         table: 'sys_ui_related_list_entry'
                         id: '7d4b22f9fa5045e5afb5a9c3b6a685af'
@@ -89,6 +105,10 @@ declare global {
                     'cpor-final-reject-workspace-layout': {
                         table: 'sys_ux_form_action_layout_item'
                         id: 'e2d3865209d140fd81724480aa8f0f28'
+                    }
+                    'cpor-manager-amendment-rule': {
+                        table: 'x_au_nswp_cicsm_amendment_rule'
+                        id: 'b065b7c1e6ff486795bd45df0f4f25e7'
                     }
                     'cpor-manager-support': {
                         table: 'sys_ui_action'
@@ -138,6 +158,14 @@ declare global {
                         table: 'sys_ux_form_action_layout_item'
                         id: '025d91f680cb478ea5e8b80ab5147fb3'
                     }
+                    'cpor-request-amendments': {
+                        table: 'sys_ui_action'
+                        id: '01a38ed39b04425db2261fdf9280391e'
+                    }
+                    'cpor-request-amendments-workspace-layout': {
+                        table: 'sys_ux_form_action_layout_item'
+                        id: 'bd2a74b53287451b87a6742ae39f4db4'
+                    }
                     'cpor-review-ajax': {
                         table: 'sys_script_include'
                         id: '456fca9373b3460da48f94d000c38190'
@@ -145,6 +173,10 @@ declare global {
                     'cpor-review-runtime': {
                         table: 'sys_script_include'
                         id: '4f6237e82c254957b9b892f3690a4cd6'
+                    }
+                    'cpor-superintendent-amendment-rule': {
+                        table: 'x_au_nswp_cicsm_amendment_rule'
+                        id: 'ffe3bd31be8d4a4aa703b8b59fbb69fe'
                     }
                     'cpor-superintendent-authority': {
                         table: 'x_au_nswp_cicsm_review_authority'
@@ -157,6 +189,10 @@ declare global {
                     'menu-compliance-cases': {
                         table: 'sys_app_module'
                         id: '6206fe5e1cab40e0ae01348a4312959e'
+                    }
+                    'menu-cpor-amendment-rules': {
+                        table: 'sys_app_module'
+                        id: 'd6ad1eacaed44bf5bcd36a7d388e33cf'
                     }
                     'menu-cpor-cases': {
                         table: 'sys_app_module'
@@ -246,6 +282,10 @@ declare global {
                         table: 'x_au_nswp_cicsm_rank'
                         id: '847a993174eb45798e67d57033299c43'
                     }
+                    'validate-cpor-amendment-rule': {
+                        table: 'sys_script'
+                        id: '79e7d411b25f4c91a7433cf5731f4553'
+                    }
                     'validate-cpor-application-fields': {
                         table: 'sys_script'
                         id: '58c1bd07c53a4cefb3803397ddbabc40'
@@ -313,6 +353,28 @@ declare global {
                             }
                             element: 'short_description'
                             position: '3'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: '07622a5cbf854fdbaea2153db58652c6'
+                        key: {
+                            sys_ui_section: {
+                                id: 'eb4d0677846846e7b1e47c7ab60dfde6'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_amendment_rule'
+                                    caption: 'Amendment permissions'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: '.begin_split'
+                            position: '0'
                         }
                     },
                     {
@@ -393,6 +455,13 @@ declare global {
                         id: '0ca02dd6aadc4a53a575c82a9f4d12cd'
                         key: {
                             name: 'x_au_nswp_cicsm_rank'
+                        }
+                    },
+                    {
+                        table: 'sys_ux_form_action'
+                        id: '0d8b2691f34546e3bec4bf06eacba1c6'
+                        key: {
+                            ui_action: '01a38ed39b04425db2261fdf9280391e'
                         }
                     },
                     {
@@ -517,6 +586,38 @@ declare global {
                                 }
                             }
                             element: 'number'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_list_element'
+                        id: '19248ee6fd3f404e87992e76aed701f9'
+                        key: {
+                            list_id: {
+                                id: 'cfc827baeb7046068981f3e2cda9f130'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_amendment_rule'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                    element: 'NULL'
+                                    relationship: 'NULL'
+                                    parent: 'NULL'
+                                }
+                            }
+                            element: 'sys_updated_on'
+                        }
+                    },
+                    {
+                        table: 'sys_documentation'
+                        id: '1a97ee76909341db8ab468937e0fa618'
+                        key: {
+                            name: 'x_au_nswp_cicsm_amendment_rule'
+                            element: 'NULL'
+                            language: 'en'
                         }
                     },
                     {
@@ -761,6 +862,28 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_ui_element'
+                        id: '251a3f622e6f48dca8394b1715b934b8'
+                        key: {
+                            sys_ui_section: {
+                                id: 'eb4d0677846846e7b1e47c7ab60dfde6'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_amendment_rule'
+                                    caption: 'Amendment permissions'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: '.split'
+                            position: '3'
+                        }
+                    },
+                    {
                         table: 'sys_ux_form_action'
                         id: '26089bcd80dc44ee9801092292c730e6'
                         key: {
@@ -841,6 +964,29 @@ declare global {
                             }
                             element: 'inspection_conducted'
                             position: '2'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_list_element'
+                        id: '294db32b59a7400fa10f733fe13e03f2'
+                        key: {
+                            list_id: {
+                                id: 'cfc827baeb7046068981f3e2cda9f130'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_amendment_rule'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                    element: 'NULL'
+                                    relationship: 'NULL'
+                                    parent: 'NULL'
+                                }
+                            }
+                            element: 'active'
                         }
                     },
                     {
@@ -933,6 +1079,61 @@ declare global {
                             cat_item: '1b80a9541b1d4b29a3593ec281fccd02'
                             variable_set: 'NULL'
                             name: 'requestingOfficer'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: '2d5aaa716640401fa37099b2530bf5ba'
+                        key: {
+                            sys_ui_section: {
+                                id: 'eb4d0677846846e7b1e47c7ab60dfde6'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_amendment_rule'
+                                    caption: 'Amendment permissions'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'stage'
+                            position: '1'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_form_section'
+                        id: '2d980a9d900a4719bf9f5b4da64c6faa'
+                        key: {
+                            sys_ui_form: {
+                                id: '5d3daad6698649999cbca4ad31e33a2b'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_amendment_rule'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            sys_ui_section: {
+                                id: 'eb4d0677846846e7b1e47c7ab60dfde6'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_amendment_rule'
+                                    caption: 'Amendment permissions'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
                         }
                     },
                     {
@@ -1085,6 +1286,19 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_security_acl_role'
+                        id: '3333ff35e62f44df9fc3f12213d44044'
+                        key: {
+                            sys_security_acl: '8f524bde4f394ab88bf3e8a7c7c33792'
+                            sys_user_role: {
+                                id: '398ae73896234527b35abc90f11e012f'
+                                key: {
+                                    name: 'x_au_nswp_pcm.configuration_admin'
+                                }
+                            }
+                        }
+                    },
+                    {
                         table: 'sys_ui_form_section'
                         id: '338402c379d74b53ab6407f96f5b2fef'
                         key: {
@@ -1169,6 +1383,15 @@ declare global {
                                 }
                             }
                             element: 'lifecycle'
+                        }
+                    },
+                    {
+                        table: 'sys_documentation'
+                        id: '38b2c3b9224f4cb69d74c483541e1899'
+                        key: {
+                            name: 'x_au_nswp_cicsm_amendment_rule'
+                            element: 'editable_fields'
+                            language: 'en'
                         }
                     },
                     {
@@ -1263,6 +1486,14 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_dictionary'
+                        id: '3c5736bc10704fe8857e41c9c846c5da'
+                        key: {
+                            name: 'x_au_nswp_cicsm_amendment_rule'
+                            element: 'active'
+                        }
+                    },
+                    {
                         table: 'sys_ui_element'
                         id: '3e2daa1e673540768a7be2856699fc43'
                         key: {
@@ -1353,6 +1584,13 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_db_object'
+                        id: '41067cf4b55e4845be6e82aac5f47534'
+                        key: {
+                            name: 'x_au_nswp_cicsm_amendment_rule'
+                        }
+                    },
+                    {
                         table: 'sys_ui_element'
                         id: '432349dc2a474f4f93d32344b9f1b142'
                         deleted: true
@@ -1401,6 +1639,19 @@ declare global {
                         key: {
                             name: 'x_au_nswp_cicsm_cpor'
                             element: 'approval_outcome'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_action_role'
+                        id: '43daa6a5b113406a90fdae0ff9be69d9'
+                        key: {
+                            sys_ui_action: '01a38ed39b04425db2261fdf9280391e'
+                            sys_user_role: {
+                                id: '940ae6de9d1d40af898e72c3a115183f'
+                                key: {
+                                    name: 'x_au_nswp_pcm.case_worker'
+                                }
+                            }
                         }
                     },
                     {
@@ -1477,6 +1728,15 @@ declare global {
                             }
                             element: '.end_split'
                             position: '10'
+                        }
+                    },
+                    {
+                        table: 'sys_documentation'
+                        id: '46b6783f62f048608e65eaf6706b105d'
+                        key: {
+                            name: 'x_au_nswp_cicsm_amendment_rule'
+                            element: 'stage'
+                            language: 'en'
                         }
                     },
                     {
@@ -1799,6 +2059,33 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_ui_form'
+                        id: '5d3daad6698649999cbca4ad31e33a2b'
+                        key: {
+                            name: 'x_au_nswp_cicsm_amendment_rule'
+                            view: {
+                                id: 'Default view'
+                                key: {
+                                    name: 'NULL'
+                                }
+                            }
+                            sys_domain: 'global'
+                        }
+                    },
+                    {
+                        table: 'sys_security_acl_role'
+                        id: '5d8c3e568ca1431a9d55403b05690ee9'
+                        key: {
+                            sys_security_acl: '21187bbcd5634d20b2d8e5454c717efd'
+                            sys_user_role: {
+                                id: '398ae73896234527b35abc90f11e012f'
+                                key: {
+                                    name: 'x_au_nswp_pcm.configuration_admin'
+                                }
+                            }
+                        }
+                    },
+                    {
                         table: 'sys_ui_element'
                         id: '5da924248f5c4afc989422e53fcc73f0'
                         key: {
@@ -1907,6 +2194,15 @@ declare global {
                             cat_item: '1b80a9541b1d4b29a3593ec281fccd02'
                             variable_set: 'NULL'
                             name: 'supportingManager'
+                        }
+                    },
+                    {
+                        table: 'sys_documentation'
+                        id: '677903f2f55748eb89bca39fa784107d'
+                        key: {
+                            name: 'x_au_nswp_cicsm_amendment_rule'
+                            element: 'active'
+                            language: 'en'
                         }
                     },
                     {
@@ -2075,6 +2371,13 @@ declare global {
                             }
                             element: '.end_split'
                             position: '8'
+                        }
+                    },
+                    {
+                        table: 'ua_table_licensing_config'
+                        id: '6f46a281838e4af68a254ebe826c4aba'
+                        key: {
+                            name: 'x_au_nswp_cicsm_amendment_rule'
                         }
                     },
                     {
@@ -2382,6 +2685,28 @@ declare global {
                     },
                     {
                         table: 'sys_ui_element'
+                        id: '7f3a1ee51a0c433793b688f8f0d7f060'
+                        key: {
+                            sys_ui_section: {
+                                id: 'eb4d0677846846e7b1e47c7ab60dfde6'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_amendment_rule'
+                                    caption: 'Amendment permissions'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'editable_fields'
+                            position: '2'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
                         id: '80f525e37a7e43fca3c6849ccc43bcf5'
                         key: {
                             sys_ui_section: {
@@ -2681,6 +3006,37 @@ declare global {
                             }
                             element: 'secondary_requester'
                             position: '9'
+                        }
+                    },
+                    {
+                        table: 'sys_index'
+                        id: '9930e6c33cab491ebfe2a50e4ac4a3b2'
+                        key: {
+                            logical_table_name: 'x_au_nswp_cicsm_amendment_rule'
+                            col_name_string: 'stage'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_list_element'
+                        id: '9af3c6570584440f8c7f147a5482f82c'
+                        key: {
+                            list_id: {
+                                id: 'cfc827baeb7046068981f3e2cda9f130'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_amendment_rule'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                    element: 'NULL'
+                                    relationship: 'NULL'
+                                    parent: 'NULL'
+                                }
+                            }
+                            element: 'stage'
                         }
                     },
                     {
@@ -3237,6 +3593,28 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_ui_element'
+                        id: 'b21da1e566ef42caa444c1758fd059ca'
+                        key: {
+                            sys_ui_section: {
+                                id: 'eb4d0677846846e7b1e47c7ab60dfde6'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_amendment_rule'
+                                    caption: 'Amendment permissions'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: '.end_split'
+                            position: '5'
+                        }
+                    },
+                    {
                         table: 'sys_dictionary'
                         id: 'b32c9a2277d845a4bf4f5252e9c94e35'
                         key: {
@@ -3497,6 +3875,14 @@ declare global {
                             }
                             element: '.begin_split'
                             position: '0'
+                        }
+                    },
+                    {
+                        table: 'sys_dictionary'
+                        id: 'c33f651d820244da889cbd409720861c'
+                        key: {
+                            name: 'x_au_nswp_cicsm_amendment_rule'
+                            element: 'editable_fields'
                         }
                     },
                     {
@@ -3775,6 +4161,23 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_ui_list'
+                        id: 'cfc827baeb7046068981f3e2cda9f130'
+                        key: {
+                            name: 'x_au_nswp_cicsm_amendment_rule'
+                            view: {
+                                id: 'Default view'
+                                key: {
+                                    name: 'NULL'
+                                }
+                            }
+                            sys_domain: 'global'
+                            element: 'NULL'
+                            relationship: 'NULL'
+                            parent: 'NULL'
+                        }
+                    },
+                    {
                         table: 'sys_ui_element'
                         id: 'd002587ee36d4f26a458e10da02b718f'
                         key: {
@@ -3889,6 +4292,28 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_ui_element'
+                        id: 'd70193241e42406a90a1c09efd07a4c2'
+                        key: {
+                            sys_ui_section: {
+                                id: 'eb4d0677846846e7b1e47c7ab60dfde6'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_amendment_rule'
+                                    caption: 'Amendment permissions'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'active'
+                            position: '4'
+                        }
+                    },
+                    {
                         table: 'sys_documentation'
                         id: 'd813401a813f449caea302d664d6a4b9'
                         key: {
@@ -3917,6 +4342,29 @@ declare global {
                             }
                             element: 'inspection_16c2_date'
                             position: '12'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_list_element'
+                        id: 'd98a4e6ea61d4f70ab360fc767b7a688'
+                        key: {
+                            list_id: {
+                                id: 'cfc827baeb7046068981f3e2cda9f130'
+                                key: {
+                                    name: 'x_au_nswp_cicsm_amendment_rule'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                    element: 'NULL'
+                                    relationship: 'NULL'
+                                    parent: 'NULL'
+                                }
+                            }
+                            element: 'editable_fields'
                         }
                     },
                     {
@@ -4284,6 +4732,21 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_ui_section'
+                        id: 'eb4d0677846846e7b1e47c7ab60dfde6'
+                        key: {
+                            name: 'x_au_nswp_cicsm_amendment_rule'
+                            caption: 'Amendment permissions'
+                            view: {
+                                id: 'Default view'
+                                key: {
+                                    name: 'NULL'
+                                }
+                            }
+                            sys_domain: 'global'
+                        }
+                    },
+                    {
                         table: 'sys_ui_element'
                         id: 'ec5cc81ce1b241f8a761bd7957a8b5bf'
                         key: {
@@ -4377,6 +4840,14 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_dictionary'
+                        id: 'f27e57d8eb3f4b37ac5a74746ad9a029'
+                        key: {
+                            name: 'x_au_nswp_cicsm_amendment_rule'
+                            element: 'NULL'
+                        }
+                    },
+                    {
                         table: 'sys_documentation'
                         id: 'f3de0081441f407bbd8659ec9682828a'
                         key: {
@@ -4413,6 +4884,14 @@ declare global {
                             }
                             element: 'premises_address'
                             position: '14'
+                        }
+                    },
+                    {
+                        table: 'sys_dictionary'
+                        id: 'f4f95aecc36d4067bf502a901b7bf7aa'
+                        key: {
+                            name: 'x_au_nswp_cicsm_amendment_rule'
+                            element: 'stage'
                         }
                     },
                     {
@@ -4519,6 +4998,19 @@ declare global {
                             }
                             element: 'selected_department'
                             position: '4'
+                        }
+                    },
+                    {
+                        table: 'sys_security_acl_role'
+                        id: 'f855ced3ff2048c3b61237ebe4aeb253'
+                        key: {
+                            sys_security_acl: '09a918b418214f0798f9488cbb835742'
+                            sys_user_role: {
+                                id: '398ae73896234527b35abc90f11e012f'
+                                key: {
+                                    name: 'x_au_nswp_pcm.configuration_admin'
+                                }
+                            }
                         }
                     },
                     {

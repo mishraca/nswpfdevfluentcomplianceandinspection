@@ -38,10 +38,20 @@ private application cursor. It is inactive pending native checks of HR reads,
 vacancies, overlaps and activity updates. Access checks use live position
 authority even while the displayed assignment has not yet refreshed.
 
+The reviewer has a configured Request amendments action. The submitter's
+amendment and resubmission operations act on the same CPOR case and review
+activity; they do not create a revision record or draft case. A stage setting
+and CPOR amendment rule select which submitted fields may change. The server
+also enforces a fixed ceiling of CPOR application fields and checks the
+actual submitter through Core case access policy. Field auditing records saved
+changes. The guarded client-callable methods are available for the native
+officer interface, which still needs to be connected and checked in the police
+instance.
+
 This branch is **not ready for operational use**. The Core CPOR service and
-stages remain inactive; same-case amendment and resubmission are not yet
-implemented in this police-owned branch. Native police-instance verification
-and activation of position assignment refresh are pending. The workspace
+stages and amendment rules remain inactive. The officer amendment interface,
+native police-instance verification and activation of position assignment
+refresh are pending. The workspace
 actions compile locally but have not been opened in the police instance.
 Employee Center page, catalog and ticket configuration will be completed on
 the police instance. Cross-scope access and the end-to-end journey require

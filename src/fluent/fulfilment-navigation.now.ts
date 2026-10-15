@@ -29,6 +29,10 @@ Record({ $id: Now.ID['menu-police-ranks'], table: 'sys_app_module', data: {
     title: 'Police ranks', application: menu, link_type: 'LIST',
     name: 'x_au_nswp_cicsm_rank', roles: ['x_au_nswp_pcm.configuration_admin'], active: true, order: 500,
 } })
+Record({ $id: Now.ID['menu-cpor-amendment-rules'], table: 'sys_app_module', data: {
+    title: 'CPOR amendment rules', application: menu, link_type: 'LIST',
+    name: 'x_au_nswp_cicsm_amendment_rule', roles: ['x_au_nswp_pcm.configuration_admin'], active: true, order: 600,
+} })
 
 UiAction({
     $id: Now.ID['new-cpor-application'],

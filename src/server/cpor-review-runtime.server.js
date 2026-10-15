@@ -226,6 +226,144 @@ CporReviewRuntime.prototype = {
         return { caseId: caseId, outcome: outcome };
     },
 
+    _amendmentRule: function (stage) {
+        if (!stage || !stage.isValidRecord() || stage.getValue('active') != '1' ||
+            stage.getValue('amendments_allowed') != '1') return null;
+        var rule = new GlideRecord('x_au_nswp_cicsm_amendment_rule');
+        rule.addQuery('stage', stage.getUniqueValue());
+        rule.addQuery('active', true);
+        rule.setLimit(2);
+        rule.query();
+        if (!rule.next()) return null;
+        var selected = String(rule.getValue('editable_fields') || '').split(',');
+        if (rule.next() || !selected.length) return null;
+        var allowed = ['external_contact_number','registerable_person_name','date_of_birth',
+            'cni','cpr_case_number','premises_address','grounds','inspection_16c1_date',
+            'inspection_16c1_event_number','inspection_16c2_date','inspection_16c2_event_number',
+            'cpor_application_year'];
+        for (var i = 0; i < selected.length; i++) {
+            if (allowed.indexOf(selected[i]) < 0 || selected.indexOf(selected[i]) != i) return null;
+        }
+        return selected;
+    },
+
+    _requestAmendmentContext: function (caseId) {
+        var context = this._context(caseId) || this._approvalContext(caseId);
+        return context && this._amendmentRule(context.stage) ? context : null;
+    },
+
+    canRequestAmendment: function (caseId) {
+        return !!this._requestAmendmentContext(caseId);
+    },
+
+    amendmentRequestContext: function (caseId) {
+        var context = this._requestAmendmentContext(caseId);
+        if (!context) throw 'Requesting amendments is unavailable for this review.';
+        return { activity: context.activity.getUniqueValue() };
+    },
+
+    requestAmendment: function (caseId, activityId, reason) {
+        var context = this._requestAmendmentContext(caseId);
+        if (!context || !/^[0-9a-f]{32}$/.test(String(activityId || '')) ||
+            context.activity.getUniqueValue() != activityId) {
+            throw 'The review changed. Reload the case before requesting amendments.';
+        }
+        reason = String(reason || '').trim();
+        if (!reason || reason.length > 4000) throw 'Enter amendment instructions of up to 4000 characters.';
+        context.activity.setValue('activity_status', 'waiting');
+        context.activity.setValue('review_outcome', 'request_amendment');
+        context.activity.setValue('review_comments', reason);
+        if (!context.activity.update()) throw 'The review activity could not await amendments.';
+        context.record.setValue('lifecycle', 'awaiting_information');
+        context.record.setValue('comments', 'Amendments requested: ' + reason);
+        if (!context.record.update()) throw 'The case could not await amendments.';
+        return { caseId: caseId };
+    },
+
+    _amendmentContext: function (caseId, action) {
+        if (!/^[0-9a-f]{32}$/.test(String(caseId || '')) ||
+            (action != 'case.amend' && action != 'case.resubmit')) return null;
+        var record = new GlideRecord('x_au_nswp_cicsm_cpor');
+        if (!record.get(caseId) || record.getValue('active') != '1' ||
+            record.getValue('lifecycle') != 'awaiting_information') return null;
+        var service = record.service.getRefRecord();
+        if (!service.isValidRecord() || service.getValue('active') != '1' ||
+            service.getValue('fulfilment_mode') != 'activities' ||
+            !new x_au_nswp_pcm.OperationalCasePolicy().allows(record, 'case.read') ||
+            !new x_au_nswp_pcm.OperationalCasePolicy().allows(record, action)) return null;
+        var activity = new GlideRecord('x_au_nswp_cicsm_activity');
+        activity.addQuery('case', caseId);
+        activity.addQuery('activity_status', 'waiting');
+        activity.addQuery('review_outcome', 'request_amendment');
+        activity.setLimit(2);
+        activity.query();
+        if (!activity.next()) return null;
+        var selected = activity.getUniqueValue();
+        if (activity.next()) return null;
+        activity.get(selected);
+        var stage = activity.stage.getRefRecord();
+        if (!stage.isValidRecord() || stage.getValue('process') != service.getValue('process')) return null;
+        var fields = this._amendmentRule(stage);
+        return fields ? { record: record, activity: activity, stage: stage, fields: fields } : null;
+    },
+
+    canAmend: function (caseId) {
+        return !!this._amendmentContext(caseId, 'case.amend');
+    },
+
+    amendmentContext: function (caseId) {
+        var context = this._amendmentContext(caseId, 'case.amend');
+        if (!context) throw 'This application is not available for amendment.';
+        var values = {};
+        for (var i = 0; i < context.fields.length; i++) {
+            values[context.fields[i]] = String(context.record.getValue(context.fields[i]) || '');
+        }
+        return { caseId: caseId, activity: context.activity.getUniqueValue(),
+            fields: context.fields, values: values };
+    },
+
+    saveAmendment: function (caseId, values) {
+        var context = this._amendmentContext(caseId, 'case.amend');
+        if (!context || !values || typeof values != 'object' || Array.isArray(values)) {
+            throw 'This application is not available for amendment.';
+        }
+        var lengths = { external_contact_number: 20, registerable_person_name: 160,
+            date_of_birth: 10, cni: 80, cpr_case_number: 80, premises_address: 1000,
+            grounds: 16000, inspection_16c1_date: 10, inspection_16c1_event_number: 80,
+            inspection_16c2_date: 10, inspection_16c2_event_number: 80, cpor_application_year: 4 };
+        var fields = Object.keys(values);
+        if (!fields.length || fields.length > context.fields.length) throw 'Select permitted application details to amend.';
+        for (var i = 0; i < fields.length; i++) {
+            var field = fields[i];
+            if (!Object.prototype.hasOwnProperty.call(lengths, field) ||
+                context.fields.indexOf(field) < 0 || typeof values[field] != 'string' ||
+                !values[field].trim() || values[field].length > lengths[field]) {
+                throw 'A submitted amendment field is not permitted or is invalid.';
+            }
+            context.record.setValue(field, values[field].trim());
+        }
+        if (!context.record.update()) throw 'The amended application details could not be saved.';
+        return { caseId: caseId };
+    },
+
+    resubmit: function (caseId, activityId, response) {
+        var context = this._amendmentContext(caseId, 'case.resubmit');
+        if (!context || !/^[0-9a-f]{32}$/.test(String(activityId || '')) ||
+            context.activity.getUniqueValue() != activityId) {
+            throw 'The amendment request changed. Reload the case before resubmitting.';
+        }
+        var purpose = context.stage.getValue('purpose');
+        if (purpose != 'support' && purpose != 'approval') throw 'This review stage cannot receive the amended application.';
+        response = String(response || '').trim();
+        if (!response || response.length > 4000) throw 'Enter a response to the amendment request of up to 4000 characters.';
+        context.record.setValue('lifecycle', purpose == 'support' ? 'new' : 'awaiting_review');
+        context.record.setValue('comments', 'Application resubmitted for review. Response: ' + response);
+        if (!context.record.update()) throw 'The amended application could not be resubmitted.';
+        context.activity.setValue('activity_status', 'ready');
+        if (!context.activity.update()) throw 'The review activity could not resume.';
+        return { caseId: caseId, activityId: activityId };
+    },
+
     _finalisationContext: function (caseId) {
         if (!/^[0-9a-f]{32}$/.test(String(caseId || ''))) return null;
         var record = new GlideRecord('x_au_nswp_cicsm_cpor');

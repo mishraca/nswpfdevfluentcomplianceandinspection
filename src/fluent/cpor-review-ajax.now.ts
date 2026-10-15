@@ -4,8 +4,9 @@ ScriptInclude({
     $id: Now.ID['cpor-review-ajax'],
     name: 'CporReviewAjax',
     active: true,
-    accessibleFrom: 'package_private',
+    accessibleFrom: 'public',
+    callerAccess: 'restriction',
     clientCallable: true,
-    description: 'Submits guarded CPOR review actions from the case workspace.',
+    description: 'Submits guarded CPOR review and same-case amendment actions from approved interfaces.',
     script: Now.include('../server/cpor-review-ajax.server.js'),
 })
