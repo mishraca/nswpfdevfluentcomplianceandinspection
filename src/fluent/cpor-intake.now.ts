@@ -162,7 +162,7 @@ export const cporIntake = CatalogItemRecordProducer({
         inspectionEnd: ContainerEndVariable({ order: 370 }),
     },
     script: Now.include('../server/cpor-producer.server.js'),
-    version: 4,
+    version: 5,
     $override: {
         u_back_office_review_required: 'false',
         u_lock_on_receipted: 'false',
