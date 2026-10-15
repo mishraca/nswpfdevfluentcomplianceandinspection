@@ -5,9 +5,21 @@ declare global {
         namespace Internal {
             interface Keys extends KeysRegistry {
                 explicit: {
+                    '6cbb90805548db106f03be439e6ad6fe': {
+                        table: 'ticket_tab_configuration'
+                        id: '6cbb90805548db106f03be439e6ad6fe'
+                    }
+                    '870c18c05548db106f03be439e6ad64a': {
+                        table: 'ticket_tab_configuration'
+                        id: '870c18c05548db106f03be439e6ad64a'
+                    }
                     bom_json: {
                         table: 'sys_module'
                         id: 'abcd555a51ee4efa94c3de427eb13630'
+                    }
+                    cc4b58005548db106f03be439e6ad682: {
+                        table: 'ticket_configuration'
+                        id: 'cc4b58005548db106f03be439e6ad682'
                     }
                     'compliance-activity-create': {
                         table: 'sys_security_acl'
@@ -290,6 +302,14 @@ declare global {
                         table: 'sys_security_acl'
                         id: 'af3f88de211f4817beb565087ce848b9'
                     }
+                    'rank-related-lists': {
+                        table: 'sys_ui_related_list'
+                        id: '094db563fed94887925911f6b5fc9d83'
+                    }
+                    'rank-review-authorities-list': {
+                        table: 'sys_ui_related_list_entry'
+                        id: 'fd007656cd8e4f83aaeaca050cfd6ff4'
+                    }
                     'rank-write': {
                         table: 'sys_security_acl'
                         id: '012552eaaee94b6393c8d4e1bd3aa960'
@@ -414,6 +434,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: '05c194c05584db106f03be439e6ad69d'
+                        deleted: true
                         key: {
                             id: 'cbc5005406574f09859d66836c0137fc'
                             field: 'rec_price_if_checked'
@@ -457,6 +478,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: '09c1d4c05584db106f03be439e6ad604'
+                        deleted: true
                         key: {
                             id: 'c5a8a130a8bf45ebaa9dc29dbf018ec0'
                             field: 'rec_price_if_checked'
@@ -465,6 +487,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: '09c1d4c05584db106f03be439e6ad667'
+                        deleted: true
                         key: {
                             id: 'c9ebd7046c9b4e01ab42b6fb03800290'
                             field: 'price_if_checked'
@@ -547,6 +570,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: '0dc1d4c05584db106f03be439e6ad601'
+                        deleted: true
                         key: {
                             id: 'a746eae7cfe74b39b3a03f402053b000'
                             field: 'price_if_checked'
@@ -952,6 +976,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: '24c114c05584db106f03be439e6ad66d'
+                        deleted: true
                         key: {
                             id: '050bbd289ac14a4c9ba3f707a523728c'
                             field: 'rec_price_if_checked'
@@ -1065,6 +1090,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: '28c114c05584db106f03be439e6ad674'
+                        deleted: true
                         key: {
                             id: '4925f191242f4b06b160076276601d62'
                             field: 'price_if_checked'
@@ -1179,6 +1205,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: '2cc114c05584db106f03be439e6ad626'
+                        deleted: true
                         key: {
                             id: '625f67f747db4d40b73ba606ec100d11'
                             field: 'price_if_checked'
@@ -1187,6 +1214,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: '2cc114c05584db106f03be439e6ad6d0'
+                        deleted: true
                         key: {
                             id: '2d21ff1e21e94b638ee2f72bdf9b0713'
                             field: 'price_if_checked'
@@ -1311,6 +1339,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: '30c114c05584db106f03be439e6ad6d6'
+                        deleted: true
                         key: {
                             id: '6d1103a91f1d4a00beda2f2fda325de9'
                             field: 'price_if_checked'
@@ -1319,6 +1348,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: '30c154c05584db106f03be439e6ad692'
+                        deleted: true
                         key: {
                             id: '1eeed3f96d664cdfab29d2a4541a9777'
                             field: 'price_if_checked'
@@ -1533,6 +1563,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: '38c154c05584db106f03be439e6ad68a'
+                        deleted: true
                         key: {
                             id: '494df0b90be4466db357bda1972af5d1'
                             field: 'rec_price_if_checked'
@@ -1640,6 +1671,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: '3cc114c05584db106f03be439e6ad6d8'
+                        deleted: true
                         key: {
                             id: '6634580e36fe4402ae341e0b61759292'
                             field: 'rec_price_if_checked'
@@ -1648,6 +1680,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: '3cc154c05584db106f03be439e6ad6e4'
+                        deleted: true
                         key: {
                             id: 'c69b11d616324fbc8b071812978fe00b'
                             field: 'price_if_checked'
@@ -1753,6 +1786,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: '41c1d4c05584db106f03be439e6ad6bd'
+                        deleted: true
                         key: {
                             id: 'dcc42382e5cd41c78fd3e5d3fba97501'
                             field: 'rec_price_if_checked'
@@ -1848,6 +1882,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: '45c194c05584db106f03be439e6ad69f'
+                        deleted: true
                         key: {
                             id: 'cbc5005406574f09859d66836c0137fc'
                             field: 'price_if_checked'
@@ -1856,6 +1891,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: '45c194c05584db106f03be439e6ad6a3'
+                        deleted: true
                         key: {
                             id: 'fe359cd79d4549c1aabdd97e8d297930'
                             field: 'rec_price_if_checked'
@@ -1864,6 +1900,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: '45c1d4c05584db106f03be439e6ad609'
+                        deleted: true
                         key: {
                             id: 'cee3dc129e984709bee07b7eba2a460b'
                             field: 'rec_price_if_checked'
@@ -2010,6 +2047,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: '49c194c05584db106f03be439e6ad663'
+                        deleted: true
                         key: {
                             id: 'b78d3774541447c28c7ecf5b6771f2d7'
                             field: 'rec_price_if_checked'
@@ -2018,6 +2056,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: '49c1d4c05584db106f03be439e6ad606'
+                        deleted: true
                         key: {
                             id: 'c5a8a130a8bf45ebaa9dc29dbf018ec0'
                             field: 'price_if_checked'
@@ -2380,6 +2419,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: '64c114c05584db106f03be439e6ad66f'
+                        deleted: true
                         key: {
                             id: '050bbd289ac14a4c9ba3f707a523728c'
                             field: 'price_if_checked'
@@ -2388,6 +2428,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: '64c1d0c05584db106f03be439e6ad664'
+                        deleted: true
                         key: {
                             id: '277388c66e1846e9abde365a9dfd15a2'
                             field: 'rec_price_if_checked'
@@ -2782,6 +2823,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: '74c154c05584db106f03be439e6ad6ea'
+                        deleted: true
                         key: {
                             id: 'dee82f39b4a8406b8bad31e5d62139d1'
                             field: 'price_if_checked'
@@ -2875,6 +2917,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: '78c154c05584db106f03be439e6ad63a'
+                        deleted: true
                         key: {
                             id: '7edd964a9b6a43b2b42e8fa4e6a517be'
                             field: 'rec_price_if_checked'
@@ -2883,6 +2926,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: '78c154c05584db106f03be439e6ad68c'
+                        deleted: true
                         key: {
                             id: '494df0b90be4466db357bda1972af5d1'
                             field: 'price_if_checked'
@@ -2916,6 +2960,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: '7cc154c05584db106f03be439e6ad637'
+                        deleted: true
                         key: {
                             id: '7e7ce21b6b274d77b727c50fb9713066'
                             field: 'price_if_checked'
@@ -3003,7 +3048,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: '84c110c05584db106f03be439e6ad6ae'
-                        deleted: false
+                        deleted: true
                         key: {
                             id: '1b80a9541b1d4b29a3593ec281fccd02'
                             field: 'price'
@@ -3012,6 +3057,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: '85c194c05584db106f03be439e6ad6a5'
+                        deleted: true
                         key: {
                             id: 'fe359cd79d4549c1aabdd97e8d297930'
                             field: 'price_if_checked'
@@ -3104,6 +3150,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: '89c194c05584db106f03be439e6ad665'
+                        deleted: true
                         key: {
                             id: 'b78d3774541447c28c7ecf5b6771f2d7'
                             field: 'price_if_checked'
@@ -3112,6 +3159,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: '89c1d4c05584db106f03be439e6ad665'
+                        deleted: true
                         key: {
                             id: 'c9ebd7046c9b4e01ab42b6fb03800290'
                             field: 'rec_price_if_checked'
@@ -3195,6 +3243,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: '8dc1d4c05584db106f03be439e6ad6b7'
+                        deleted: true
                         key: {
                             id: 'ad4d16ac2ddd4a82bc1a545fd5c1095f'
                             field: 'rec_price_if_checked'
@@ -3448,6 +3497,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: 'a0c114c05584db106f03be439e6ad66a'
+                        deleted: true
                         key: {
                             id: '9082578ac1d64a14966cbce2a72d8cd1'
                             field: 'price_if_checked'
@@ -3620,6 +3670,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: 'a4c114c05584db106f03be439e6ad605'
+                        deleted: true
                         key: {
                             id: '52029b7f72ed4169914fd3686f5a046d'
                             field: 'rec_price_if_checked'
@@ -3703,6 +3754,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: 'a8c1d0c05584db106f03be439e6ad6a0'
+                        deleted: true
                         key: {
                             id: '6c7c8074b69b4ecf825608144fbca88c'
                             field: 'rec_price_if_checked'
@@ -3776,6 +3828,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: 'acc114c05584db106f03be439e6ad629'
+                        deleted: true
                         key: {
                             id: '9082578ac1d64a14966cbce2a72d8cd1'
                             field: 'rec_price_if_checked'
@@ -3911,6 +3964,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: 'b0c154c05584db106f03be439e6ad690'
+                        deleted: true
                         key: {
                             id: '1eeed3f96d664cdfab29d2a4541a9777'
                             field: 'rec_price_if_checked'
@@ -4059,6 +4113,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: 'b8c154c05584db106f03be439e6ad63c'
+                        deleted: true
                         key: {
                             id: '7edd964a9b6a43b2b42e8fa4e6a517be'
                             field: 'price_if_checked'
@@ -4105,6 +4160,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: 'bcc154c05584db106f03be439e6ad6e2'
+                        deleted: true
                         key: {
                             id: 'c69b11d616324fbc8b071812978fe00b'
                             field: 'rec_price_if_checked'
@@ -4342,6 +4398,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: 'c5c1d4c05584db106f03be439e6ad662'
+                        deleted: true
                         key: {
                             id: 'cee3dc129e984709bee07b7eba2a460b'
                             field: 'price_if_checked'
@@ -4412,6 +4469,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: 'c9c194c05584db106f03be439e6ad6ff'
+                        deleted: true
                         key: {
                             id: 'a746eae7cfe74b39b3a03f402053b000'
                             field: 'rec_price_if_checked'
@@ -4460,6 +4518,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: 'cdc1d4c05584db106f03be439e6ad6b9'
+                        deleted: true
                         key: {
                             id: 'ad4d16ac2ddd4a82bc1a545fd5c1095f'
                             field: 'price_if_checked'
@@ -4843,6 +4902,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: 'ddc1d4c05584db106f03be439e6ad6be'
+                        deleted: true
                         key: {
                             id: 'dcc42382e5cd41c78fd3e5d3fba97501'
                             field: 'price_if_checked'
@@ -4891,6 +4951,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: 'e0c114c05584db106f03be439e6ad620'
+                        deleted: true
                         key: {
                             id: '52029b7f72ed4169914fd3686f5a046d'
                             field: 'price_if_checked'
@@ -4899,6 +4960,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: 'e0c1d0c05584db106f03be439e6ad6fa'
+                        deleted: true
                         key: {
                             id: '6c7c8074b69b4ecf825608144fbca88c'
                             field: 'price_if_checked'
@@ -4969,6 +5031,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: 'e4c114c05584db106f03be439e6ad672'
+                        deleted: true
                         key: {
                             id: '4925f191242f4b06b160076276601d62'
                             field: 'rec_price_if_checked'
@@ -4977,6 +5040,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: 'e4c1d0c05584db106f03be439e6ad69a'
+                        deleted: true
                         key: {
                             id: '277388c66e1846e9abde365a9dfd15a2'
                             field: 'price_if_checked'
@@ -5135,6 +5199,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: 'e8c114c05584db106f03be439e6ad624'
+                        deleted: true
                         key: {
                             id: '625f67f747db4d40b73ba606ec100d11'
                             field: 'rec_price_if_checked'
@@ -5143,6 +5208,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: 'e8c114c05584db106f03be439e6ad6ce'
+                        deleted: true
                         key: {
                             id: '2d21ff1e21e94b638ee2f72bdf9b0713'
                             field: 'rec_price_if_checked'
@@ -5223,6 +5289,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: 'ecc114c05584db106f03be439e6ad6d3'
+                        deleted: true
                         key: {
                             id: '6d1103a91f1d4a00beda2f2fda325de9'
                             field: 'rec_price_if_checked'
@@ -5307,6 +5374,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: 'f4c154c05584db106f03be439e6ad6e8'
+                        deleted: true
                         key: {
                             id: 'dee82f39b4a8406b8bad31e5d62139d1'
                             field: 'rec_price_if_checked'
@@ -5465,6 +5533,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: 'f8c154c05584db106f03be439e6ad631'
+                        deleted: true
                         key: {
                             id: '6634580e36fe4402ae341e0b61759292'
                             field: 'price_if_checked'
@@ -5473,6 +5542,7 @@ declare global {
                     {
                         table: 'fx_price'
                         id: 'f8c154c05584db106f03be439e6ad635'
+                        deleted: true
                         key: {
                             id: '7e7ce21b6b274d77b727c50fb9713066'
                             field: 'rec_price_if_checked'

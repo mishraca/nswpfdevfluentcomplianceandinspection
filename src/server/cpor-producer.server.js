@@ -20,18 +20,23 @@
     if (!managerPosition || !new CporPositionAuthority().holds(managerPosition, manager)) {
         throw 'The selected Manager must be the current holder of one valid SAP HDA Position or SAP Position.';
     }
+    var intake = new GlideRecord('x_au_nswp_pcm_intake');
+    intake.addQuery('producer', cat_item.getUniqueValue());
+    intake.addQuery('active', true);
+    intake.setLimit(2);
+    intake.query();
+    if (!intake.next()) throw 'This application has no active case intake registration.';
+    var selected = intake.getValue('service');
+    if (intake.next()) throw 'This application has multiple active case intake registrations.';
     var service = new GlideRecord('x_au_nswp_pcm_service');
-    service.addQuery('code', 'cpor_16d');
-    service.addQuery('active', true);
-    service.setLimit(2);
-    service.query();
-    if (!service.next()) throw 'The CPOR 16D service is unavailable.';
-    var selected = service.getUniqueValue();
-    if (service.next()) throw 'The CPOR 16D service configuration is ambiguous.';
+    if (!service.get(selected) || service.getValue('active') != '1') {
+        throw 'The registered case service is unavailable.';
+    }
 
     var caseType = new GlideRecord('x_au_nswp_pcm_case_type');
     if (!caseType.get(service.getValue('case_type')) ||
-        caseType.getValue('case_table') != 'x_au_nswp_cicsm_cpor') {
+        caseType.getValue('case_table') != 'x_au_nswp_cicsm_cpor' ||
+        cat_item.getValue('table_name') != 'x_au_nswp_cicsm_cpor') {
         throw 'The CPOR 16D case type is not configured for this intake.';
     }
     current.setValue('service', selected);

@@ -16,11 +16,9 @@ Record({ $id: Now.ID['superintendent-rank'], table: 'x_au_nswp_cicsm_rank',
     data: { name: 'Superintendent', active: true } })
 
 // This rule names the approval stage owned by the shared case application.
-// Keep it inactive until the two applications and their read permissions have
-// been verified together on the police development instance.
 Record({ $id: Now.ID['cpor-superintendent-authority'], table: 'x_au_nswp_cicsm_review_authority',
     data: { approval_stage: 'ca6df3be16ce4866881c4a3c3fb36edd',
-        required_rank: Now.ID['superintendent-rank'], active: false } })
+        required_rank: Now.ID['superintendent-rank'], active: true } })
 
 BusinessRule({
     $id: Now.ID['validate-police-rank'], name: 'Validate police rank',
@@ -43,7 +41,8 @@ export const x_au_nswp_cicsm_review_authority = Table({
     allowClientScripts: false, allowNewFields: false, allowUiActions: false,
     allowWebServiceAccess: false, audit: true,
     schema: {
-        approval_stage: ReferenceColumn({ label: 'Approval stage', referenceTable: 'x_au_nswp_pcm_stage', mandatory: true, cascadeRule: 'restrict' }),
+        approval_stage: ReferenceColumn({ label: 'Approval stage', referenceTable: 'x_au_nswp_pcm_stage',
+            mandatory: true, referenceQual: 'purpose=approval^active=true', cascadeRule: 'restrict' }),
         required_rank: ReferenceColumn({ label: 'Required nominee rank', referenceTable: 'x_au_nswp_cicsm_rank', mandatory: true,
             referenceQual: 'active=true', cascadeRule: 'restrict' }),
         active: BooleanColumn({ label: 'Active', default: false }),

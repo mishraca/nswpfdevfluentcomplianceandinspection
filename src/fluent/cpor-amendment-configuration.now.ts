@@ -21,9 +21,9 @@ export const x_au_nswp_cicsm_amendment_rule = Table({
 const applicationFields = 'external_contact_number,registerable_person_name,date_of_birth,cni,cpr_case_number,premises_address,grounds,inspection_16c1_date,inspection_16c1_event_number,inspection_16c2_date,inspection_16c2_event_number,cpor_application_year'
 
 Record({ $id: Now.ID['cpor-manager-amendment-rule'], table: 'x_au_nswp_cicsm_amendment_rule',
-    data: { stage: '556c082aa05f4949b88c8600d4623dd0', editable_fields: applicationFields, active: false } })
+    data: { stage: '556c082aa05f4949b88c8600d4623dd0', editable_fields: applicationFields, active: true } })
 Record({ $id: Now.ID['cpor-superintendent-amendment-rule'], table: 'x_au_nswp_cicsm_amendment_rule',
-    data: { stage: 'ca6df3be16ce4866881c4a3c3fb36edd', editable_fields: applicationFields, active: false } })
+    data: { stage: 'ca6df3be16ce4866881c4a3c3fb36edd', editable_fields: applicationFields, active: true } })
 
 BusinessRule({
     $id: Now.ID['validate-cpor-amendment-rule'], name: 'Validate CPOR amendment rule',
