@@ -13,6 +13,11 @@ active referenced users and department, resolves the selected Manager's HR
 Profile, and uses SAP HDA Position when present, otherwise SAP Position. It
 records the position at submission; officers do not enter it.
 
+The backend application menu exposes compliance cases, CPOR cases and case
+activities to the shared case worker role. The CPOR case list has a “New CPOR
+application” action that opens the native producer. Staff should create an
+application through that action rather than create an incomplete Task record.
+
 This branch is **not ready for installation or operational use**. The Core
 service remains inactive; no first Manager activity, live position handover,
 reviewer action, standard ticket configuration or workspace queue has been

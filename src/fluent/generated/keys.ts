@@ -21,6 +21,10 @@ declare global {
                         table: 'sys_security_acl'
                         id: '0587e4d6d2cd43ed902986305d2e5948'
                     }
+                    'compliance-fulfilment-menu': {
+                        table: 'sys_app_application'
+                        id: '7361d0ac5ae948daa54c6744f776de28'
+                    }
                     'compliance-inspections-catalog-category': {
                         table: 'sc_category'
                         id: 'a7a6640383664f6296052188b26766b0'
@@ -30,6 +34,10 @@ declare global {
                         table: 'sc_cat_item_producer'
                         id: '1b80a9541b1d4b29a3593ec281fccd02'
                     }
+                    'cpor-case-activities-related-list': {
+                        table: 'sys_ui_related_list_entry'
+                        id: '7d4b22f9fa5045e5afb5a9c3b6a685af'
+                    }
                     'cpor-case-create': {
                         table: 'sys_security_acl'
                         id: '9fe8d393c80a401c95cb23d6a703c449'
@@ -38,9 +46,49 @@ declare global {
                         table: 'sys_security_acl'
                         id: '02a9c86f432944369477292e6c8afa43'
                     }
+                    'cpor-case-related-lists': {
+                        table: 'sys_ui_related_list'
+                        id: 'a8b26a4898934f77926bc1fef35053de'
+                    }
                     'cpor-case-write': {
                         table: 'sys_security_acl'
                         id: '4c681b07a2654410b2dddd06ab68230f'
+                    }
+                    'cpor-process-cancelled': {
+                        table: 'sys_process_flow'
+                        id: '1fd3728d335f4de5b2bb657bca486e38'
+                    }
+                    'cpor-process-complete': {
+                        table: 'sys_process_flow'
+                        id: 'd93f9ea57b0f4dc4bbc14be559076bd8'
+                    }
+                    'cpor-process-in-progress': {
+                        table: 'sys_process_flow'
+                        id: '323231505bee4cbe9370874580e62c2e'
+                    }
+                    'cpor-process-information': {
+                        table: 'sys_process_flow'
+                        id: 'cd5b0597b34a406fa052a7ea497ae1f7'
+                    }
+                    'cpor-process-new': {
+                        table: 'sys_process_flow'
+                        id: '0624d41a131c4150b6490d388ffcec1e'
+                    }
+                    'menu-compliance-cases': {
+                        table: 'sys_app_module'
+                        id: '6206fe5e1cab40e0ae01348a4312959e'
+                    }
+                    'menu-cpor-cases': {
+                        table: 'sys_app_module'
+                        id: 'fc85d5b4c4d249feb3a9ae45531b5ac0'
+                    }
+                    'menu-operational-activities': {
+                        table: 'sys_app_module'
+                        id: 'cf3570875d314183beaba65fdf16ef64'
+                    }
+                    'new-cpor-application': {
+                        table: 'sys_ui_action'
+                        id: 'f756828b3ad84f5a9b5972f6c718dcaf'
                     }
                     package_json: {
                         table: 'sys_module'
@@ -67,6 +115,19 @@ declare global {
                             cat_item: '1b80a9541b1d4b29a3593ec281fccd02'
                             variable_set: 'NULL'
                             name: 'personSplit'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_action_role'
+                        id: '081f61f075254857af3a8eaa024ae278'
+                        key: {
+                            sys_ui_action: 'f756828b3ad84f5a9b5972f6c718dcaf'
+                            sys_user_role: {
+                                id: '940ae6de9d1d40af898e72c3a115183f'
+                                key: {
+                                    name: 'x_au_nswp_pcm.case_worker'
+                                }
+                            }
                         }
                     },
                     {
