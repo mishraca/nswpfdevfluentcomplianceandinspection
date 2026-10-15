@@ -20,9 +20,10 @@ application through that action rather than create an incomplete Task record.
 
 This branch is **not ready for installation or operational use**. The Core
 service remains inactive; no first Manager activity, live position handover,
-reviewer action, standard ticket configuration or workspace queue has been
-implemented here. Cross-scope access and the Employee Center journey require
-review on the police development instance. A local build only validates SDK
+reviewer decision action or workspace queue has been implemented here.
+Employee Center page, catalog and ticket configuration will be completed on
+the police instance. Cross-scope access and the end-to-end journey require
+native review. A local build only validates SDK
 source; it does not establish native behavior.
 
 Install Core before this app when the first visual journey is complete. Do not
