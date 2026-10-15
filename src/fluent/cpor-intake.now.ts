@@ -162,6 +162,7 @@ export const cporIntake = CatalogItemRecordProducer({
         inspectionEnd: ContainerEndVariable({ order: 370 }),
     },
     script: Now.include('../server/cpor-producer.server.js'),
+    postInsertScript: `new CporInitialReview().ensure(current.getUniqueValue());`,
     version: 4,
     $override: {
         u_back_office_review_required: 'false',
