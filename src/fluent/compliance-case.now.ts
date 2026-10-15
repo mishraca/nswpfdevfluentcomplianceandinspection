@@ -123,6 +123,10 @@ if (!review.insert()) throw 'The first CPOR review activity could not be created
 })
 
 // No ordinary direct create, write or delete path is opened by this table.
+Acl({ $id: Now.ID['cpor-case-position-read'], type: 'record', table: 'x_au_nswp_cicsm_cpor', operation: 'read',
+    adminOverrides: false, script: 'answer = gs.hasRole("admin") || new x_au_nswp_pcm.OperationalCasePolicy().allows(current, "case.read") || new CporReviewRuntime().canReadCase(current.getUniqueValue());' })
+Acl({ $id: Now.ID['compliance-activity-position-read'], type: 'record', table: 'x_au_nswp_cicsm_activity', operation: 'read',
+    adminOverrides: false, script: 'answer = gs.hasRole("admin") || new x_au_nswp_pcm.OperationalCasePolicy().allowsActivity(current) || new CporReviewRuntime().canReadActivity(current);' })
 Acl({ $id: Now.ID['compliance-case-create'], type: 'record', table: 'x_au_nswp_cicsm_case', operation: 'create', decisionType: 'deny', adminOverrides: false, script: 'answer = false;' })
 Acl({ $id: Now.ID['compliance-case-write'], type: 'record', table: 'x_au_nswp_cicsm_case', operation: 'write', decisionType: 'deny', adminOverrides: false, script: 'answer = false;' })
 Acl({ $id: Now.ID['compliance-case-delete'], type: 'record', table: 'x_au_nswp_cicsm_case', operation: 'delete', decisionType: 'deny', adminOverrides: false, script: 'answer = false;' })

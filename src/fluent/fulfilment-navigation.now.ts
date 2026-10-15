@@ -5,7 +5,7 @@ const menu = ApplicationMenu({
     $id: Now.ID['compliance-fulfilment-menu'],
     title: 'Compliance and Inspection Cases',
     description: 'Case and activity lists for compliance fulfilment.',
-    roles: ['x_au_nswp_pcm.case_worker'],
+    roles: ['x_au_nswp_pcm.case_worker', 'x_au_nswp_pcm.configuration_admin'],
     active: true,
 })
 
@@ -20,6 +20,14 @@ Record({ $id: Now.ID['menu-cpor-cases'], table: 'sys_app_module', data: {
 Record({ $id: Now.ID['menu-operational-activities'], table: 'sys_app_module', data: {
     title: 'Case activities', application: menu, link_type: 'LIST',
     name: 'x_au_nswp_cicsm_activity', roles: ['x_au_nswp_pcm.case_worker'], active: true, order: 300,
+} })
+Record({ $id: Now.ID['menu-review-authority'], table: 'sys_app_module', data: {
+    title: 'Review authority', application: menu, link_type: 'LIST',
+    name: 'x_au_nswp_cicsm_review_authority', roles: ['x_au_nswp_pcm.configuration_admin'], active: true, order: 400,
+} })
+Record({ $id: Now.ID['menu-police-ranks'], table: 'sys_app_module', data: {
+    title: 'Police ranks', application: menu, link_type: 'LIST',
+    name: 'x_au_nswp_cicsm_rank', roles: ['x_au_nswp_pcm.configuration_admin'], active: true, order: 500,
 } })
 
 UiAction({
