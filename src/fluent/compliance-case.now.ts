@@ -81,11 +81,22 @@ var year = current.getValue('cpor_application_year') || '';
 var first = current.getValue('inspection_16c1_date') || '';
 var second = current.getValue('inspection_16c2_date') || '';
 var today = new GlideDate().getValue();
-if (!/^[0-9]{8,20}$/.test(contact) || !/^\\d{4}$/.test(year) ||
-    !birth || birth > today || !first || !second ||
-    first.substring(0, 4) != year || second.substring(0, 4) != year ||
-    !current.getValue('selected_department')) {
-    gs.addErrorMessage('Check the contact number, date of birth, application year, inspection dates and department.');
+var problem = '';
+if (!/^[0-9]{8,20}$/.test(contact)) problem = 'Enter a contact number of 8 to 20 digits.';
+else if (!birth || birth > today) problem = 'Enter a date of birth that is not in the future.';
+else if (!/^[0-9]{4}$/.test(year)) problem = 'Enter a four-digit application year.';
+else if (!/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(first) ||
+    !/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(second)) {
+    problem = 'Enter both inspection dates.';
+} else if (first.substring(0, 4) != year || second.substring(0, 4) != year) {
+    problem = 'Both inspection dates must be within the application year.';
+} else if (first >= second) {
+    problem = 'The 16C2 inspection must be after the 16C1 inspection.';
+} else if (!current.getValue('selected_department')) {
+    problem = 'Select the department for this application.';
+}
+if (problem) {
+    gs.addErrorMessage(problem);
     current.setAbortAction(true);
 }`,
 })
