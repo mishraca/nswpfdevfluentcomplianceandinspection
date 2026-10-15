@@ -170,6 +170,10 @@ declare global {
                         table: 'sys_ux_form_action_layout_item'
                         id: 'e2d3865209d140fd81724480aa8f0f28'
                     }
+                    'cpor-initial-review': {
+                        table: 'sys_script_include'
+                        id: 'f4e0fce4be76436ba3e196b568fabc2c'
+                    }
                     'cpor-manager-amendment-rule': {
                         table: 'x_au_nswp_cicsm_amendment_rule'
                         id: 'b065b7c1e6ff486795bd45df0f4f25e7'
@@ -213,6 +217,14 @@ declare global {
                     'cpor-process-new': {
                         table: 'sys_process_flow'
                         id: '0624d41a131c4150b6490d388ffcec1e'
+                    }
+                    'cpor-public-activity-fields': {
+                        table: 'sys_properties'
+                        id: 'f838b062070c489389667eae82701036'
+                    }
+                    'cpor-public-comment-write': {
+                        table: 'sys_security_acl'
+                        id: '61f04a55a7f84db3862d4576662d64e4'
                     }
                     'cpor-record-outcome': {
                         table: 'sys_ui_action'
@@ -333,6 +345,10 @@ declare global {
                     'review-authority-write': {
                         table: 'sys_security_acl'
                         id: '6806a6eb33f84e9bbbc5552696fdfee5'
+                    }
+                    'src_server_cpor-initial-review_server_js': {
+                        table: 'sys_module'
+                        id: '0201299af9fe49078d854b0d10834bcc'
                     }
                     'src_server_cpor-position-authority_server_js': {
                         table: 'sys_module'

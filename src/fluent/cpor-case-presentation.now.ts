@@ -1,5 +1,12 @@
 import { Record } from '@servicenow/sdk/core'
 
+Record({ $id: Now.ID['cpor-public-activity-fields'], table: 'sys_properties', data: {
+    name: 'glide.ui.x_au_nswp_cicsm_cpor.fields', type: 'string',
+    value: 'comments,lifecycle,requester,secondary_requester,selected_department,external_contact_number,registerable_person_name,date_of_birth,cni,cpr_case_number,premises_address,grounds,inspection_16c1_date,inspection_16c1_event_number,inspection_16c2_date,inspection_16c2_event_number,manager,cpor_application_year',
+    description: 'CPOR case journal and audited application changes in the Activity tab. Field read permissions apply.',
+    ignore_cache: false, is_private: false,
+} })
+
 const relatedLists = Record({
     $id: Now.ID['cpor-case-related-lists'],
     table: 'sys_ui_related_list',

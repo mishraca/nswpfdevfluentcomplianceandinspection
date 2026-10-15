@@ -24,7 +24,9 @@ application through that action rather than create an incomplete Task record.
 The CPOR form has a case activities related list and a lifecycle Process Flow.
 An after-insert rule uses the service's configured first support stage to
 create a position-bound review activity. The position resolver checks live HR
-Profile values with HDA priority.
+Profile values with HDA priority. The producer also checks for that activity
+after insertion and creates it if the rule did not; both entry points use the
+same guarded, idempotent routine.
 
 The Manager support, Superintendent decision and inspection outcome actions
 are defined for the shared workspace. Each action rechecks the current actor,
@@ -62,8 +64,10 @@ stages, review authority and amendment rules are active for police development
 testing. The officer amendment interface, native police-instance verification
 and activation of position assignment refresh are pending. The workspace
 actions compile locally but have not been opened in the police instance.
-The police instance now owns the Employee Center catalog and Standard Ticket
-configuration. Cross-scope access and the end-to-end journey require native
+The police instance owns the Employee Center catalog association. The sourced
+Standard Ticket configuration uses the case lifecycle for its header status,
+shows public comments in the Activity tab and keeps the lifecycle out of the
+summary fields. Cross-scope access and the end-to-end journey require native
 review. A local build only validates SDK source; it does not establish native
 behavior.
 
