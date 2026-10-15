@@ -12,13 +12,13 @@ export const x_au_nswp_cicsm_rank = Table({
     },
 })
 
-Record({ $id: Now.ID['superintendent-rank'], table: 'x_au_nswp_cicsm_rank',
+const superintendentRank = Record({ $id: Now.ID['superintendent-rank'], table: 'x_au_nswp_cicsm_rank',
     data: { name: 'Superintendent', active: true } })
 
 // This rule names the approval stage owned by the shared case application.
 Record({ $id: Now.ID['cpor-superintendent-authority'], table: 'x_au_nswp_cicsm_review_authority',
     data: { approval_stage: 'ca6df3be16ce4866881c4a3c3fb36edd',
-        required_rank: Now.ID['superintendent-rank'], active: true } })
+        required_rank: superintendentRank, active: true } })
 
 BusinessRule({
     $id: Now.ID['validate-police-rank'], name: 'Validate police rank',

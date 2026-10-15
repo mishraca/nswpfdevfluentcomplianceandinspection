@@ -408,8 +408,11 @@ CporReviewRuntime.prototype = {
                 date >= new GlideDate().getValue()) return 'Enter a valid inspection date before today.';
             if (charge != 'yes' && charge != 'no') return 'Select whether a charge was laid.';
             if (reason) return 'A reason for an inspection not conducted does not apply.';
-        } else if (date || charge || chargeNumber) {
-            return 'Inspection and charge details require a conducted inspection.';
+        } else {
+            if (!reason) return 'Enter why the inspection was not conducted.';
+            if (date || charge || chargeNumber) {
+                return 'Inspection and charge details require a conducted inspection.';
+            }
         }
         if (charge != 'yes' && chargeNumber) return 'A charge number requires a charge laid.';
         if (chargeNumber.length > 80 || reason.length > 4000) return 'Inspection outcome details are too long.';

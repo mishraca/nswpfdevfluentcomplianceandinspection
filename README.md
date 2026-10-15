@@ -13,7 +13,9 @@ active referenced users and department, resolves the selected Manager's HR
 Profile, and uses SAP HDA Position when present, otherwise SAP Position. It
 records the position at submission; officers do not enter it. The producer
 resolves its case service through the Core intake registration rather than a
-service code in its script.
+service code in its script. Its pre-insert validation identifies its own
+registered producer and checks that the configured case type targets the
+current CPOR table.
 
 The backend application menu exposes compliance cases, CPOR cases and case
 activities to the shared case worker role. The CPOR case list has a "New CPOR
@@ -31,7 +33,10 @@ the nominee's effective rank (`u_hda_rank` first, then `title`) against an
 application-owned rank record selected for the approval stage, and resolves
 their SAP HDA Position before SAP Position. The Superintendent rank rule is
 bound to the Core final approval stage and active for police development
-testing. Its stage reference and the police rank values need native checks.
+testing. Its rank reference is emitted as the rank record ID. The stage
+reference and the police rank values need native checks. Review actions are
+shown in the workspace with input modals; classic form buttons are hidden
+because those actions have no classic form handler.
 
 Position authority fails closed if HR Profiles identify more than one active
 holder for the same effective SAP position. A bounded assignment refresh is

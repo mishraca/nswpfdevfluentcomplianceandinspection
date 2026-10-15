@@ -21,7 +21,7 @@
         throw 'The selected Manager must be the current holder of one valid SAP HDA Position or SAP Position.';
     }
     var intake = new GlideRecord('x_au_nswp_pcm_intake');
-    intake.addQuery('producer', cat_item.getUniqueValue());
+    intake.addQuery('producer', '1b80a9541b1d4b29a3593ec281fccd02');
     intake.addQuery('active', true);
     intake.setLimit(2);
     intake.query();
@@ -34,9 +34,13 @@
     }
 
     var caseType = new GlideRecord('x_au_nswp_pcm_case_type');
+    var registeredProducer = intake.producer.getRefRecord();
     if (!caseType.get(service.getValue('case_type')) ||
         caseType.getValue('case_table') != 'x_au_nswp_cicsm_cpor' ||
-        cat_item.getValue('table_name') != 'x_au_nswp_cicsm_cpor') {
+        !registeredProducer.isValidRecord() || registeredProducer.getValue('active') != '1' ||
+        registeredProducer.getValue('state') != 'published' ||
+        registeredProducer.getValue('table_name') != caseType.getValue('case_table') ||
+        current.getTableName() != caseType.getValue('case_table')) {
         throw 'The CPOR 16D case type is not configured for this intake.';
     }
     current.setValue('service', selected);

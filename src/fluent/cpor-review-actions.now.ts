@@ -11,9 +11,7 @@ const managerSupport = UiAction({
     roles: ['x_au_nswp_pcm.case_worker'],
     condition: 'new CporReviewRuntime().canSupport(current.getUniqueValue())',
     order: 100,
-    form: true,
-    client: { isClient: true, onClick: 'openCporManagerSupport()' },
-    script: 'function openCporManagerSupport() { return false; }',
+    form: { showButton: false, showLink: false, showContextMenu: false },
     workspace: {
         isConfigurableWorkspace: true,
         showFormButtonV2: true,
@@ -95,9 +93,7 @@ const requestAmendment = UiAction({
     name: 'Request amendments', actionName: 'cpor_request_amendments', active: true,
     showInsert: false, showUpdate: true, roles: ['x_au_nswp_pcm.case_worker'],
     condition: 'new CporReviewRuntime().canRequestAmendment(current.getUniqueValue())',
-    order: 150, form: true,
-    client: { isClient: true, onClick: 'openCporAmendmentRequest()' },
-    script: 'function openCporAmendmentRequest() { return false; }',
+    order: 150, form: { showButton: false, showLink: false, showContextMenu: false },
     workspace: { isConfigurableWorkspace: true, showFormButtonV2: true,
         clientScriptV2: `function onClick(g_form) {
     var caseId = g_form.getUniqueValue();
@@ -249,9 +245,7 @@ const approveApplication = UiAction({
     name: 'Approve application', actionName: 'cpor_final_approve', active: true,
     showInsert: false, showUpdate: true, roles: ['x_au_nswp_pcm.case_worker'],
     condition: 'new CporReviewRuntime().canDecide(current.getUniqueValue())',
-    order: 200, form: true,
-    client: { isClient: true, onClick: 'openCporFinalApprove()' },
-    script: 'function openCporFinalApprove() { return false; }',
+    order: 200, form: { showButton: false, showLink: false, showContextMenu: false },
     workspace: { isConfigurableWorkspace: true, showFormButtonV2: true,
         clientScriptV2: approveScript },
 })
@@ -268,9 +262,7 @@ const rejectApplication = UiAction({
     name: 'Reject application', actionName: 'cpor_final_reject', active: true,
     showInsert: false, showUpdate: true, roles: ['x_au_nswp_pcm.case_worker'],
     condition: 'new CporReviewRuntime().canDecide(current.getUniqueValue())',
-    order: 250, form: true,
-    client: { isClient: true, onClick: 'openCporFinalReject()' },
-    script: 'function openCporFinalReject() { return false; }',
+    order: 250, form: { showButton: false, showLink: false, showContextMenu: false },
     workspace: { isConfigurableWorkspace: true, showFormButtonV2: true,
         clientScriptV2: rejectScript },
 })
@@ -287,16 +279,14 @@ const recordOutcome = UiAction({
     name: 'Record inspection outcome', actionName: 'cpor_record_outcome', active: true,
     showInsert: false, showUpdate: true,
     condition: 'new CporReviewRuntime().canFinalise(current.getUniqueValue())',
-    order: 300, form: true,
-    client: { isClient: true, onClick: 'openCporInspectionOutcome()' },
-    script: 'function openCporInspectionOutcome() { return false; }',
+    order: 300, form: { showButton: false, showLink: false, showContextMenu: false },
     workspace: { isConfigurableWorkspace: true, showFormButtonV2: true,
         clientScriptV2: `function onClick(g_form) {
     var caseId = g_form.getUniqueValue();
     var yesNo = [{ displayValue: 'Select', value: '' },
         { displayValue: 'Yes', value: 'yes' }, { displayValue: 'No', value: 'no' }];
     g_modal.showFields({ title: 'Record inspection outcome', confirmTitle: 'Finalise case', size: 'lg',
-        instruction: 'If an inspection was conducted, enter its date before today and whether a charge was laid.',
+        instruction: 'Enter the inspection date and charge details when conducted, or a reason when not conducted.',
         fields: [
             { type: 'choice', name: 'conducted', label: 'Inspection conducted', mandatory: true, choices: yesNo },
             { type: 'string', name: 'date', label: 'Inspection date (YYYY-MM-DD)' },
