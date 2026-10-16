@@ -2,5 +2,10 @@
     "scope": "x_au_nswp_cicsm",
     "scopeId": "7806abf755bb8b106f03be439e6ad662",
     "name": "Compliance and Inspection Case Management",
-    "tsconfigPath": "./src/server/tsconfig.json"
+    "tsconfigPath": "./src/server/tsconfig.json",
+    "dependencies": {
+        "x_au_nswp_pcm": {
+            "tables": ["x_au_nswp_pcm_case", "x_au_nswp_pcm_activity", "x_au_nswp_pcm_intake"]
+        }
+    }
 }
