@@ -19,12 +19,23 @@ function onSubmit() {
         return { year: year, time: date.getTime() };
     }
     var contact = g_form.getValue('externalContact') || '';
+    var requester = g_form.getValue('requestingOfficer') || '';
+    var secondary = g_form.getValue('secondaryOfficer') || '';
+    var department = g_form.getValue('selectedDepartment') || '';
     var year = g_form.getValue('applicationYear') || '';
     var birth = g_form.getValue('dateOfBirth') || '';
     var first = g_form.getValue('inspection16c1Date') || '';
     var second = g_form.getValue('inspection16c2Date') || '';
     var now = new Date();
     var today = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+    if (requester && secondary && requester === secondary) {
+        g_form.showFieldMsg('secondaryOfficer', 'Select a different secondary requesting officer.', 'error');
+        return false;
+    }
+    if (!department) {
+        g_form.showFieldMsg('selectedDepartment', 'Select the department for this application.', 'error');
+        return false;
+    }
     if (!/^[0-9]{8,20}$/.test(contact)) {
         g_form.showFieldMsg('externalContact', 'Enter 8 to 20 digits.', 'error');
         return false;

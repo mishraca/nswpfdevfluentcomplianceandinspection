@@ -94,6 +94,9 @@ else if (!/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(first) ||
     problem = 'The 16C2 inspection must be after the 16C1 inspection.';
 } else if (!current.getValue('selected_department')) {
     problem = 'Select the department for this application.';
+} else if (current.getValue('requester') && current.getValue('secondary_requester') &&
+    current.getValue('requester') == current.getValue('secondary_requester')) {
+    problem = 'The secondary requesting officer must be different from the requesting officer.';
 }
 if (problem) {
     gs.addErrorMessage(problem);

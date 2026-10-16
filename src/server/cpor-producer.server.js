@@ -16,6 +16,9 @@
         !activeRecord('cmn_department', department) || !activeRecord('sys_user', manager)) {
         throw 'Select active officers, a Manager and a department.';
     }
+    if (requester == secondary) {
+        throw 'The secondary requesting officer must be different from the requesting officer.';
+    }
     var managerPosition = new CporPositionAuthority().positionFor(manager);
     if (!managerPosition || !new CporPositionAuthority().holds(managerPosition, manager)) {
         throw 'The selected Manager must be the current holder of one valid SAP HDA Position or SAP Position.';
